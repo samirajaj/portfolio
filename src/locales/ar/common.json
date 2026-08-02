@@ -1,0 +1,52 @@
+{
+  "actions": {
+    "exploreProjects": "استكشف المشاريع",
+    "viewCaseStudy": "اقرأ دراسة الحالة",
+    "viewRepository": "عرض المستودع",
+    "viewLiveSite": "عرض الموقع المباشر",
+    "sendEmail": "إرسال بريد إلكتروني",
+    "callPhone": "اتصال هاتفي",
+    "openLinkedIn": "فتح LinkedIn",
+    "openGitHub": "فتح GitHub",
+    "backHome": "العودة إلى الرئيسية",
+    "backToTop": "العودة إلى الأعلى",
+    "openMenu": "فتح قائمة التنقل",
+    "closeMenu": "إغلاق قائمة التنقل",
+    "switchLanguage": "التبديل إلى {{language}}",
+    "reloadPage": "إعادة تحميل الصفحة",
+    "previousProject": "المشروع السابق",
+    "nextProject": "المشروع التالي"
+  },
+  "status": {
+    "completed": "مكتمل",
+    "in-progress": "قيد التطوير",
+    "concept": "تصوّر"
+  },
+  "labels": {
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "location": "الموقع",
+    "availability": "التوفّر",
+    "role": "الدور",
+    "year": "السنة",
+    "status": "الحالة",
+    "technologies": "التقنيات",
+    "capabilities": "القدرات",
+    "current": "حتى الآن",
+    "project": "المشروع",
+    "language": "اللغة",
+    "english": "English",
+    "arabic": "العربية",
+    "request": "الطلب",
+    "response": "الاستجابة"
+  },
+  "a11y": {
+    "skipToContent": "تجاوز إلى المحتوى الرئيسي",
+    "externalLink": "يُفتح في تبويب جديد",
+    "currentLanguage": "اللغة الحالية: {{language}}",
+    "projectIllustration": "خريطة النظام التقنية لمشروع {{project}}",
+    "decorative": "عنصر زخرفي"
+  }
+}

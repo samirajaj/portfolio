@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="1000" gradientUnits="userSpaceOnUse"><stop stop-color="#111721"/><stop offset="1" stop-color="#080B10"/></linearGradient>
+    <linearGradient id="request" x1="122" y1="422" x2="1464" y2="422" gradientUnits="userSpaceOnUse"><stop stop-color="#9489FF"/><stop offset="1" stop-color="#7164F4"/></linearGradient>
+    <linearGradient id="response" x1="1464" y1="650" x2="122" y2="650" gradientUnits="userSpaceOnUse"><stop stop-color="#45CBD0"/><stop offset="1" stop-color="#067F83"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#222B38"/></pattern>
+    <pattern id="major" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M200 0H0V200" stroke="#323C4D"/></pattern>
+    <radialGradient id="field" cx="0" cy="0" r="1" gradientTransform="translate(855 505) rotate(4) scale(697 403)" gradientUnits="userSpaceOnUse"><stop stop-color="#7164F4" stop-opacity="0.12"/><stop offset="0.65" stop-color="#45CBD0" stop-opacity="0.05"/><stop offset="1" stop-opacity="0"/></radialGradient>
+    <filter id="glowV" x="-160%" y="-160%" width="420%" height="420%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glowT" x="-160%" y="-160%" width="420%" height="420%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrowV" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1L11 6L1 11" stroke="#9489FF" stroke-width="1.5" fill="none"/></marker>
+    <marker id="arrowT" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1L11 6L1 11" stroke="#45CBD0" stroke-width="1.5" fill="none"/></marker>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#grid)" opacity="0.56"/>
+  <rect width="1600" height="1000" fill="url(#major)" opacity="0.62"/>
+  <rect width="1600" height="1000" fill="url(#field)"/>
+  <path d="M72 78H1528V922H72V78Z" stroke="#3A4558"/>
+  <g fill="#718096"><circle cx="72" cy="78" r="4"/><circle cx="1528" cy="78" r="4"/><circle cx="72" cy="922" r="4"/><circle cx="1528" cy="922" r="4"/></g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="104" y="132" fill="#F5F7FA" font-size="26" font-weight="700" letter-spacing="5">MEDIA-STORAGE</text>
+    <text x="104" y="163" fill="#8F9BAD" font-size="13" font-weight="650" letter-spacing="3">SYS-03 · TEST-00</text>
+    <text x="1496" y="132" fill="#8F9BAD" font-size="13" font-weight="650" letter-spacing="3" text-anchor="end">1600×1000</text>
+
+    <g transform="translate(112 308)">
+      <rect width="304" height="332" rx="28" fill="#101720" stroke="#465268" stroke-width="2"/>
+      <path d="M0 68H304" stroke="#465268"/>
+      <circle cx="32" cy="34" r="7" fill="#9489FF"/>
+      <text x="58" y="41" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2">CONSUMER</text>
+      <g fill="#151E29" stroke="#344052">
+        <rect x="28" y="102" width="248" height="52" rx="12"/>
+        <rect x="28" y="174" width="248" height="52" rx="12"/>
+        <rect x="28" y="246" width="248" height="52" rx="12"/>
+      </g>
+      <text x="52" y="135" fill="#BCC5D2" font-size="13" font-weight="700" letter-spacing="2">UPLOAD</text>
+      <text x="52" y="207" fill="#BCC5D2" font-size="13" font-weight="700" letter-spacing="2">REPLACE</text>
+      <text x="52" y="279" fill="#BCC5D2" font-size="13" font-weight="700" letter-spacing="2">DELETE</text>
+      <g fill="#9489FF"><circle cx="245" cy="128" r="4"/><circle cx="245" cy="200" r="4"/><circle cx="245" cy="272" r="4"/></g>
+    </g>
+
+    <g transform="translate(548 270)">
+      <rect width="328" height="410" rx="30" fill="#111923" stroke="#615AB0" stroke-width="2"/>
+      <path d="M0 82H328" stroke="#3A4558"/>
+      <circle cx="38" cy="41" r="10" fill="#9489FF" filter="url(#glowV)"/>
+      <text x="66" y="48" fill="#F5F7FA" font-size="19" font-weight="750" letter-spacing="2">.NET · C#</text>
+      <g fill="#161F2B" stroke="#3D4960">
+        <rect x="30" y="116" width="268" height="58" rx="12"/>
+        <rect x="30" y="194" width="268" height="58" rx="12"/>
+        <rect x="30" y="272" width="268" height="58" rx="12"/>
+      </g>
+      <text x="58" y="152" fill="#C3CCD8" font-size="14" font-weight="700" letter-spacing="1.7">API</text>
+      <text x="58" y="230" fill="#C3CCD8" font-size="14" font-weight="700" letter-spacing="1.7">DI</text>
+      <text x="58" y="308" fill="#C3CCD8" font-size="14" font-weight="700" letter-spacing="1.7">SERVICE</text>
+      <path d="M246 145V301" stroke="#9489FF" stroke-width="2" stroke-dasharray="4 8"/>
+      <g fill="#9489FF"><circle cx="246" cy="145" r="5"/><circle cx="246" cy="223" r="5"/><circle cx="246" cy="301" r="5"/></g>
+      <text x="30" y="374" fill="#78869B" font-size="12" font-weight="650" letter-spacing="2.5">CLR</text>
+    </g>
+
+    <g transform="translate(1008 214)">
+      <rect width="312" height="214" rx="26" fill="#111923" stroke="#465268" stroke-width="2"/>
+      <circle cx="42" cy="48" r="10" fill="#9489FF"/>
+      <text x="70" y="55" fill="#F5F7FA" font-size="18" font-weight="700" letter-spacing="1.5">DI</text>
+      <path d="M36 88H276" stroke="#344052"/>
+      <g fill="#19232F" stroke="#3F4B60">
+        <rect x="36" y="116" width="96" height="52" rx="11"/>
+        <rect x="180" y="116" width="96" height="52" rx="11"/>
+      </g>
+      <path d="M132 142H180" stroke="#9489FF" stroke-width="2" stroke-dasharray="4 7"/>
+      <text x="84" y="148" fill="#B7C1CF" font-size="12" font-weight="700" text-anchor="middle">IFACE</text>
+      <text x="228" y="148" fill="#B7C1CF" font-size="12" font-weight="700" text-anchor="middle">IMPL</text>
+    </g>
+
+    <g transform="translate(1008 572)">
+      <rect width="312" height="214" rx="26" fill="#111923" stroke="#465268" stroke-width="2"/>
+      <circle cx="42" cy="48" r="10" fill="#45CBD0"/>
+      <text x="70" y="55" fill="#F5F7FA" font-size="18" font-weight="700" letter-spacing="1.5">TEST-00</text>
+      <path d="M36 88H276" stroke="#344052"/>
+      <g fill="#19232F" stroke="#3F4B60">
+        <circle cx="76" cy="142" r="20"/>
+        <circle cx="156" cy="142" r="20"/>
+        <circle cx="236" cy="142" r="20"/>
+      </g>
+      <path d="M66 142L73 149L87 134" stroke="#45CBD0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="156" cy="142" r="4" fill="#526074"/>
+      <circle cx="236" cy="142" r="4" fill="#526074"/>
+    </g>
+
+    <g transform="translate(1382 334)">
+      <path d="M72 0C95 0 113 17 116 39C137 43 152 61 152 83C152 108 132 128 107 128H36C16 128 0 112 0 92C0 73 14 57 33 56C37 24 52 0 72 0Z" fill="#151F2A" stroke="#4A576D" stroke-width="2"/>
+      <path d="M48 72H104M76 44V100" stroke="#45CBD0" stroke-width="2" stroke-dasharray="4 7"/>
+      <text x="76" y="158" fill="#F5F7FA" font-size="15" font-weight="700" letter-spacing="1.3" text-anchor="middle">CLOUDINARY</text>
+    </g>
+
+    <path d="M416 420H548" stroke="url(#request)" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M876 378C934 378 950 321 1008 321" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M1320 321C1361 321 1360 398 1382 398" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M876 594C934 594 950 679 1008 679" stroke="#9489FF" stroke-width="2" stroke-dasharray="5 9" marker-end="url(#arrowV)"/>
+    <path d="M1458 492C1448 650 1297 650 1228 650" stroke="url(#response)" stroke-width="3" marker-end="url(#arrowT)"/>
+    <path d="M1008 650H876" stroke="#45CBD0" stroke-width="3" marker-end="url(#arrowT)"/>
+    <path d="M548 650H416" stroke="url(#response)" stroke-width="3" marker-end="url(#arrowT)"/>
+    <text x="462" y="404" fill="#9489FF" font-size="11" font-weight="700" letter-spacing="2">REQ</text>
+    <text x="462" y="635" fill="#45CBD0" font-size="11" font-weight="700" letter-spacing="2">RES</text>
+  </g>
+
+  <circle cx="490" cy="420" r="7" fill="#9489FF" filter="url(#glowV)"/>
+  <circle cx="486" cy="650" r="7" fill="#45CBD0" filter="url(#glowT)"/>
+  <circle cx="1345" cy="350" r="4" fill="#9489FF"/>
+  <circle cx="1334" cy="609" r="4" fill="#45CBD0"/>
+</svg>

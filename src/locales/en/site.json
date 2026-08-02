@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "work": "Work",
+    "expertise": "Expertise",
+    "approach": "Approach",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "header": {
+    "mobileTitle": "Navigation",
+    "mobileDescription": "Move through the portfolio or choose a contact method."
+  },
+  "hero": {
+    "stackLabel": "Primary stack",
+    "systemLabel": "A full-stack request, traced",
+    "systemDescription": "A request moves from the interface through validation, application logic, and persistence before a verified response updates the product.",
+    "flow": {
+      "interface": "Interface",
+      "react": "React",
+      "api": "API",
+      "auth": "Auth",
+      "logic": "Logic",
+      "database": "Database",
+      "verified": "Verified response"
+    }
+  },
+  "sections": {
+    "work": {
+      "index": "01",
+      "eyebrow": "Selected work",
+      "title": "Products, systems, and the decisions between them.",
+      "description": "Three public projects showing product interface work, full-stack boundaries, authorization, data modeling, and reusable backend design."
+    },
+    "expertise": {
+      "index": "02",
+      "eyebrow": "Capabilities",
+      "title": "Engineering across the whole product boundary.",
+      "description": "Capabilities are grouped by the problems they solve, with direct project evidence instead of percentages."
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Practical software work, described in product terms."
+    },
+    "approach": {
+      "index": "03",
+      "eyebrow": "Engineering approach",
+      "title": "Make the problem legible before making the system large.",
+      "description": "A compact process for turning an ambiguous request into a maintainable product boundary."
+    },
+    "about": {
+      "index": "04",
+      "eyebrow": "About",
+      "title": "Structure, clarity, and software that can keep changing.",
+      "education": "Education",
+      "experience": "Experience",
+      "focus": "Current focus"
+    },
+    "contact": {
+      "index": "05",
+      "eyebrow": "Start a conversation"
+    }
+  },
+  "projectStory": {
+    "interface": "Interface",
+    "architecture": "Architecture",
+    "decision": "Decision record",
+    "evidence": "Evidence",
+    "chapter": "Project chapter {{number}}"
+  },
+  "caseStudy": {
+    "back": "All selected work",
+    "overview": "Overview",
+    "context": "Context",
+    "problem": "Problem",
+    "scope": "Scope",
+    "interface": "Interface design",
+    "responsive": "Responsive behavior",
+    "architecture": "Architecture",
+    "decisions": "Engineering decisions",
+    "decision": "Decision",
+    "decisionContext": "Context",
+    "alternatives": "Alternatives considered",
+    "selectedApproach": "Selected approach",
+    "tradeoff": "Trade-off",
+    "challenges": "Challenges",
+    "delivered": "Delivered capabilities",
+    "gallery": "Technical gallery",
+    "galleryNote": "Original system map based on the public implementation. This is not a product screenshot.",
+    "navigation": "Project navigation",
+    "discuss": "Discuss a similar problem"
+  },
+  "notFound": {
+    "eyebrow": "404 / Route not found",
+    "title": "This route does not resolve to a portfolio page.",
+    "description": "The address may be incomplete, or the project is no longer available at this path.",
+    "projectTitle": "That project is not in the public case-study index.",
+    "projectDescription": "Return to selected work to choose one of the documented projects."
+  },
+  "error": {
+    "eyebrow": "Application error",
+    "title": "This page could not finish loading.",
+    "description": "Reload the page to try again. If the problem continues, use a direct contact method in the footer."
+  },
+  "footer": {
+    "copyright": "© {{year}} Samir Ajaj",
+    "note": "Designed as a request / response ledger."
+  }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="80" viewBox="0 0 320 80" fill="none">
+  <defs>
+    <linearGradient id="signal" x1="22" y1="18" x2="79" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9489FF"/>
+      <stop offset="1" stop-color="#45CBD0"/>
+    </linearGradient>
+    <pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M16 0H0V16" stroke="#293342" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="1" y="1" width="318" height="78" rx="19" fill="#10151D"/>
+  <rect x="1.75" y="1.75" width="316.5" height="76.5" rx="18.25" stroke="#354052" stroke-width="1.5"/>
+  <rect x="10" y="10" width="60" height="60" rx="14" fill="url(#grid)"/>
+  <path d="M46 19H30C23.373 19 18 23.925 18 30C18 36.075 23.373 41 30 41H39C45.627 41 51 45.925 51 52C51 58.075 45.627 63 39 63H19" stroke="url(#signal)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M50 63L59 34L68 63M54 51H64" stroke="url(#signal)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="18" cy="30" r="2.5" fill="#9489FF"/>
+  <circle cx="68" cy="63" r="2.5" fill="#45CBD0"/>
+  <path d="M92 18V62" stroke="#354052"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="116" y="39" fill="#F5F7FA" font-size="20" font-weight="720" letter-spacing="3.5">SAMIR AJAJ</text>
+    <text x="116" y="58" fill="#8F9BAD" font-size="10" font-weight="650" letter-spacing="2.4">UI · API · DB</text>
+  </g>
+</svg>

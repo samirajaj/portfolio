@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121824"/>
+      <stop offset="1" stop-color="#080B10"/>
+    </linearGradient>
+    <linearGradient id="request" x1="126" y1="442" x2="1448" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9489FF"/>
+      <stop offset="1" stop-color="#7164F4"/>
+    </linearGradient>
+    <linearGradient id="response" x1="1438" y1="722" x2="126" y2="616" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#45CBD0"/>
+      <stop offset="1" stop-color="#067F83"/>
+    </linearGradient>
+    <pattern id="minorGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#202936" stroke-width="1"/>
+    </pattern>
+    <pattern id="majorGrid" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M200 0H0V200" stroke="#313B4C" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="fieldA" cx="0" cy="0" r="1" gradientTransform="translate(706 439) rotate(18) scale(548 360)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7164F4" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#7164F4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fieldB" cx="0" cy="0" r="1" gradientTransform="translate(1289 649) rotate(-148) scale(438 300)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#45CBD0" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#45CBD0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glowViolet" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowTeal" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowRequest" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1L11 6L1 11" stroke="#9489FF" stroke-width="1.5" fill="none"/>
+    </marker>
+    <marker id="arrowResponse" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1L11 6L1 11" stroke="#45CBD0" stroke-width="1.5" fill="none"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#minorGrid)" opacity="0.55"/>
+  <rect width="1600" height="1000" fill="url(#majorGrid)" opacity="0.6"/>
+  <rect width="1600" height="1000" fill="url(#fieldA)"/>
+  <rect width="1600" height="1000" fill="url(#fieldB)"/>
+
+  <g stroke="#3A4558">
+    <path d="M72 78H1528"/>
+    <path d="M72 922H1528"/>
+    <path d="M72 78V922"/>
+    <path d="M1528 78V922"/>
+  </g>
+  <g fill="#718096">
+    <circle cx="72" cy="78" r="4"/><circle cx="1528" cy="78" r="4"/>
+    <circle cx="72" cy="922" r="4"/><circle cx="1528" cy="922" r="4"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="104" y="132" fill="#F5F7FA" font-size="26" font-weight="700" letter-spacing="5">AUTONEST</text>
+    <text x="104" y="163" fill="#8F9BAD" font-size="13" font-weight="650" letter-spacing="3">SYS-01 · EN/AR</text>
+    <text x="1496" y="132" fill="#8F9BAD" font-size="13" font-weight="650" letter-spacing="3" text-anchor="end">1600×1000</text>
+
+    <g transform="translate(112 252)">
+      <rect width="410" height="474" rx="24" fill="#101720" stroke="#455167" stroke-width="2"/>
+      <path d="M0 68H410" stroke="#455167"/>
+      <circle cx="30" cy="34" r="6" fill="#9489FF"/>
+      <circle cx="52" cy="34" r="6" fill="#384457"/>
+      <circle cx="74" cy="34" r="6" fill="#384457"/>
+      <rect x="24" y="96" width="224" height="18" rx="9" fill="#273142"/>
+      <rect x="24" y="130" width="348" height="148" rx="16" fill="#151D28" stroke="#344052"/>
+      <path d="M48 158H181M48 183H298M48 208H248" stroke="#596579" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+      <rect x="24" y="302" width="168" height="118" rx="16" fill="#151D28" stroke="#344052"/>
+      <rect x="212" y="302" width="160" height="118" rx="16" fill="#151D28" stroke="#344052"/>
+      <path d="M49 333H155M49 358H122" stroke="#596579" stroke-width="7" stroke-linecap="round" opacity="0.72"/>
+      <circle cx="332" cy="354" r="24" fill="#1B2531" stroke="#45CBD0"/>
+      <path d="M320 354L328 362L345 344" stroke="#45CBD0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="24" y="456" fill="#F5F7FA" font-size="15" font-weight="700" letter-spacing="2">NEXT.JS · REACT · TYPESCRIPT</text>
+    </g>
+
+    <g transform="translate(660 286)">
+      <rect width="316" height="386" rx="28" fill="#111923" stroke="#5E58A4" stroke-width="2"/>
+      <path d="M0 78H316" stroke="#3A4558"/>
+      <circle cx="36" cy="39" r="10" fill="#9489FF" filter="url(#glowViolet)"/>
+      <text x="62" y="46" fill="#F5F7FA" font-size="18" font-weight="700" letter-spacing="2">NEXT.JS</text>
+      <g fill="#161F2B" stroke="#3D4960">
+        <rect x="28" y="110" width="260" height="58" rx="12"/>
+        <rect x="28" y="186" width="260" height="58" rx="12"/>
+        <rect x="28" y="262" width="260" height="58" rx="12"/>
+      </g>
+      <text x="55" y="146" fill="#B6C0CF" font-size="14" font-weight="650" letter-spacing="2">RSC</text>
+      <text x="55" y="222" fill="#B6C0CF" font-size="14" font-weight="650" letter-spacing="2">ROUTE HANDLER</text>
+      <text x="55" y="298" fill="#B6C0CF" font-size="14" font-weight="650" letter-spacing="2">SERVER ACTION</text>
+      <g fill="#9489FF">
+        <circle cx="255" cy="139" r="5"/><circle cx="255" cy="215" r="5"/><circle cx="255" cy="291" r="5"/>
+      </g>
+      <text x="28" y="356" fill="#78869B" font-size="12" font-weight="650" letter-spacing="2.5">TS</text>
+    </g>
+
+    <g transform="translate(1060 192)">
+      <rect width="270" height="154" rx="22" fill="#111923" stroke="#465268" stroke-width="2"/>
+      <circle cx="34" cy="40" r="8" fill="#9489FF"/>
+      <text x="58" y="47" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="1.5">BETTER AUTH</text>
+      <path d="M34 82H236" stroke="#344052"/>
+      <rect x="34" y="104" width="112" height="18" rx="9" fill="#273142"/>
+      <circle cx="227" cy="113" r="10" fill="#1B2531" stroke="#9489FF"/>
+      <path d="M222 113L226 117L233 109" stroke="#9489FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <g transform="translate(1060 405)">
+      <rect width="270" height="154" rx="22" fill="#111923" stroke="#465268" stroke-width="2"/>
+      <circle cx="34" cy="40" r="8" fill="#45CBD0"/>
+      <text x="58" y="47" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="1.5">NEXT-INTL</text>
+      <path d="M34 82H236" stroke="#344052"/>
+      <rect x="34" y="100" width="78" height="30" rx="15" fill="#182331" stroke="#3B4C5D"/>
+      <rect x="124" y="100" width="78" height="30" rx="15" fill="#182331" stroke="#3B4C5D"/>
+      <text x="73" y="120" fill="#BFC8D5" font-size="12" font-weight="700" text-anchor="middle">EN</text>
+      <text x="163" y="120" fill="#BFC8D5" font-size="12" font-weight="700" text-anchor="middle">AR</text>
+    </g>
+
+    <g transform="translate(1370 202)">
+      <ellipse cx="80" cy="31" rx="80" ry="31" fill="#18212C" stroke="#4A576D" stroke-width="2"/>
+      <path d="M0 31V170C0 187.121 35.817 201 80 201C124.183 201 160 187.121 160 170V31" fill="#111923" stroke="#4A576D" stroke-width="2"/>
+      <path d="M0 84C0 101.121 35.817 115 80 115C124.183 115 160 101.121 160 84M0 136C0 153.121 35.817 167 80 167C124.183 167 160 153.121 160 136" stroke="#45CBD0" opacity="0.75"/>
+      <text x="80" y="111" fill="#F5F7FA" font-size="16" font-weight="700" letter-spacing="1.5" text-anchor="middle">MONGODB</text>
+    </g>
+
+    <g transform="translate(1120 670)">
+      <rect width="366" height="164" rx="24" fill="#111923" stroke="#465268" stroke-width="2"/>
+      <circle cx="44" cy="46" r="10" fill="#45CBD0" filter="url(#glowTeal)"/>
+      <text x="70" y="53" fill="#F5F7FA" font-size="18" font-weight="700" letter-spacing="1.5">CLOUDINARY</text>
+      <path d="M34 82H332" stroke="#344052"/>
+      <g fill="#182331" stroke="#3D4960">
+        <rect x="34" y="104" width="82" height="32" rx="8"/>
+        <rect x="126" y="104" width="82" height="32" rx="8"/>
+        <rect x="218" y="104" width="114" height="32" rx="8"/>
+      </g>
+      <text x="75" y="125" fill="#AEB8C7" font-size="11" font-weight="650" text-anchor="middle">IMG</text>
+      <text x="167" y="125" fill="#AEB8C7" font-size="11" font-weight="650" text-anchor="middle">WEBP</text>
+      <text x="275" y="125" fill="#AEB8C7" font-size="11" font-weight="650" text-anchor="middle">CDN</text>
+    </g>
+
+    <path d="M522 412H621C639 412 646 399 660 399" stroke="url(#request)" stroke-width="3" marker-end="url(#arrowRequest)"/>
+    <path d="M976 360H1021C1046 360 1036 269 1060 269" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowRequest)"/>
+    <path d="M976 472H1060" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowRequest)"/>
+    <path d="M1330 269H1370" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowRequest)"/>
+    <path d="M942 630C942 746 1048 752 1120 752" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowRequest)"/>
+    <path d="M1120 790C1015 790 932 757 882 694" stroke="url(#response)" stroke-width="3" marker-end="url(#arrowResponse)"/>
+    <path d="M660 606C612 606 593 604 522 604" stroke="url(#response)" stroke-width="3" marker-end="url(#arrowResponse)"/>
+    <text x="566" y="396" fill="#9489FF" font-size="11" font-weight="700" letter-spacing="2">REQ</text>
+    <text x="566" y="590" fill="#45CBD0" font-size="11" font-weight="700" letter-spacing="2">RES</text>
+  </g>
+
+  <g>
+    <circle cx="600" cy="412" r="7" fill="#9489FF" filter="url(#glowViolet)"/>
+    <circle cx="615" cy="606" r="7" fill="#45CBD0" filter="url(#glowTeal)"/>
+    <circle cx="1043" cy="360" r="4" fill="#9489FF"/>
+    <circle cx="1030" cy="752" r="4" fill="#45CBD0"/>
+  </g>
+</svg>

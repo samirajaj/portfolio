@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <linearGradient id="signal" x1="30" y1="78" x2="221" y2="176" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9489FF"/>
+      <stop offset="1" stop-color="#45CBD0"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" stroke="#2A3342" stroke-width="1"/>
+    </pattern>
+    <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="frameClip">
+      <rect x="8" y="8" width="240" height="240" rx="44"/>
+    </clipPath>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="44" fill="#10151D"/>
+  <g clip-path="url(#frameClip)">
+    <rect x="8" y="8" width="240" height="240" fill="url(#grid)" opacity="0.55"/>
+    <path d="M-8 206L264 70" stroke="#293342" stroke-width="1"/>
+    <path d="M-12 220L260 84" stroke="#293342" stroke-width="1"/>
+  </g>
+  <rect x="8.75" y="8.75" width="238.5" height="238.5" rx="43.25" stroke="#303A49" stroke-width="1.5"/>
+  <path d="M91 73H59C43.536 73 31 84.193 31 98C31 111.807 43.536 123 59 123H74C89.464 123 102 134.193 102 148C102 161.807 89.464 173 74 173H34" stroke="url(#signal)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M119 173L151 73H177L211 173M134 133H196" stroke="url(#signal)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M24 196H232" stroke="#596476" stroke-width="1" stroke-dasharray="3 8" opacity="0.7"/>
+  <circle cx="31" cy="98" r="5" fill="#9489FF" filter="url(#nodeGlow)"/>
+  <circle cx="211" cy="173" r="5" fill="#45CBD0" filter="url(#nodeGlow)"/>
+  <circle cx="128" cy="196" r="3.5" fill="#F5F7FA"/>
+</svg>

@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121824"/>
+      <stop offset="1" stop-color="#080B10"/>
+    </linearGradient>
+    <linearGradient id="request" x1="172" y1="284" x2="1430" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9489FF"/>
+      <stop offset="1" stop-color="#7164F4"/>
+    </linearGradient>
+    <linearGradient id="response" x1="1430" y1="594" x2="172" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#45CBD0"/>
+      <stop offset="1" stop-color="#067F83"/>
+    </linearGradient>
+    <pattern id="minorGrid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" stroke="#222B38"/>
+    </pattern>
+    <pattern id="majorGrid" width="180" height="180" patternUnits="userSpaceOnUse">
+      <path d="M180 0H0V180" stroke="#323C4D"/>
+    </pattern>
+    <radialGradient id="fieldV" cx="0" cy="0" r="1" gradientTransform="translate(734 310) rotate(8) scale(650 325)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7164F4" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#7164F4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="fieldT" cx="0" cy="0" r="1" gradientTransform="translate(958 631) rotate(-173) scale(650 278)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#45CBD0" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#45CBD0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glowV" x="-180%" y="-180%" width="460%" height="460%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glowT" x="-180%" y="-180%" width="460%" height="460%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrowV" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M1 1L12 6.5L1 12" stroke="#9489FF" stroke-width="1.5" fill="none"/></marker>
+    <marker id="arrowT" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M1 1L12 6.5L1 12" stroke="#45CBD0" stroke-width="1.5" fill="none"/></marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#minorGrid)" opacity="0.54"/>
+  <rect width="1600" height="900" fill="url(#majorGrid)" opacity="0.6"/>
+  <rect width="1600" height="900" fill="url(#fieldV)"/>
+  <rect width="1600" height="900" fill="url(#fieldT)"/>
+  <path d="M68 70H1532V830H68V70Z" stroke="#3A4558"/>
+  <g fill="#718096"><circle cx="68" cy="70" r="4"/><circle cx="1532" cy="70" r="4"/><circle cx="68" cy="830" r="4"/><circle cx="1532" cy="830" r="4"/></g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="102" y="122" fill="#F5F7FA" font-size="24" font-weight="700" letter-spacing="5">RR-LEDGER · 01</text>
+    <text x="1498" y="122" fill="#8F9BAD" font-size="13" font-weight="650" letter-spacing="3" text-anchor="end">UI · API · DB</text>
+
+    <g transform="translate(118 234)">
+      <rect width="196" height="350" rx="26" fill="#101720" stroke="#465268" stroke-width="2"/>
+      <path d="M0 64H196" stroke="#465268"/>
+      <circle cx="30" cy="32" r="7" fill="#9489FF"/>
+      <text x="55" y="39" fill="#F5F7FA" font-size="16" font-weight="700" letter-spacing="2">UI</text>
+      <rect x="24" y="92" width="148" height="96" rx="14" fill="#151E29" stroke="#344052"/>
+      <path d="M44 118H113M44 142H145M44 166H101" stroke="#596579" stroke-width="7" stroke-linecap="round"/>
+      <rect x="24" y="212" width="148" height="50" rx="12" fill="#151E29" stroke="#344052"/>
+      <rect x="24" y="282" width="86" height="22" rx="11" fill="#202A38"/>
+      <rect x="24" y="316" width="126" height="10" rx="5" fill="#334052"/>
+    </g>
+
+    <g transform="translate(396 188)">
+      <rect width="202" height="156" rx="22" fill="#111923" stroke="#5D58A5" stroke-width="2"/>
+      <circle cx="34" cy="42" r="9" fill="#9489FF" filter="url(#glowV)"/>
+      <text x="60" y="49" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2">REACT</text>
+      <path d="M32 80H170" stroke="#344052"/>
+      <path d="M38 112H108M122 112H163" stroke="#9489FF" stroke-width="3" stroke-dasharray="3 7"/>
+      <text x="34" y="140" fill="#8794A7" font-size="11" font-weight="650" letter-spacing="2">UI-01</text>
+    </g>
+
+    <g transform="translate(708 188)">
+      <rect width="202" height="156" rx="22" fill="#111923" stroke="#5D58A5" stroke-width="2"/>
+      <circle cx="34" cy="42" r="9" fill="#9489FF"/>
+      <text x="60" y="49" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2">API</text>
+      <path d="M32 80H170" stroke="#344052"/>
+      <rect x="32" y="104" width="138" height="28" rx="9" fill="#18222F" stroke="#3F4B60"/>
+      <text x="101" y="123" fill="#BAC4D1" font-size="11" font-weight="700" letter-spacing="1.5" text-anchor="middle">HTTP</text>
+    </g>
+
+    <g transform="translate(1020 188)">
+      <rect width="202" height="156" rx="22" fill="#111923" stroke="#5D58A5" stroke-width="2"/>
+      <circle cx="34" cy="42" r="9" fill="#9489FF"/>
+      <text x="60" y="49" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2">AUTH</text>
+      <path d="M32 80H170" stroke="#344052"/>
+      <circle cx="70" cy="116" r="16" fill="#18222F" stroke="#9489FF"/>
+      <path d="M64 116L69 121L78 111" stroke="#9489FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M104 106H166M104 126H146" stroke="#596579" stroke-width="6" stroke-linecap="round"/>
+    </g>
+
+    <g transform="translate(1308 316)">
+      <rect width="176" height="210" rx="24" fill="#111923" stroke="#5D58A5" stroke-width="2"/>
+      <circle cx="34" cy="42" r="9" fill="#9489FF"/>
+      <text x="60" y="49" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2">CORE</text>
+      <path d="M30 82H146" stroke="#344052"/>
+      <g fill="#18222F" stroke="#3F4B60">
+        <rect x="30" y="108" width="116" height="30" rx="9"/>
+        <rect x="30" y="152" width="116" height="30" rx="9"/>
+      </g>
+      <circle cx="52" cy="123" r="4" fill="#9489FF"/><circle cx="52" cy="167" r="4" fill="#9489FF"/>
+    </g>
+
+    <g transform="translate(1042 586)">
+      <ellipse cx="90" cy="28" rx="90" ry="28" fill="#18212C" stroke="#4A576D" stroke-width="2"/>
+      <path d="M0 28V130C0 145.464 40.294 158 90 158C139.706 158 180 145.464 180 130V28" fill="#111923" stroke="#4A576D" stroke-width="2"/>
+      <path d="M0 78C0 93.464 40.294 106 90 106C139.706 106 180 93.464 180 78" stroke="#45CBD0"/>
+      <text x="90" y="92" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2" text-anchor="middle">DB</text>
+    </g>
+
+    <g transform="translate(708 586)">
+      <rect width="202" height="156" rx="22" fill="#111923" stroke="#49727D" stroke-width="2"/>
+      <circle cx="34" cy="42" r="9" fill="#45CBD0" filter="url(#glowT)"/>
+      <text x="60" y="49" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2">API</text>
+      <path d="M32 80H170" stroke="#344052"/>
+      <rect x="32" y="104" width="138" height="28" rx="9" fill="#18222F" stroke="#3F4B60"/>
+      <text x="101" y="123" fill="#BAC4D1" font-size="11" font-weight="700" letter-spacing="1.5" text-anchor="middle">JSON</text>
+    </g>
+
+    <g transform="translate(396 586)">
+      <rect width="202" height="156" rx="22" fill="#111923" stroke="#49727D" stroke-width="2"/>
+      <circle cx="34" cy="42" r="9" fill="#45CBD0"/>
+      <text x="60" y="49" fill="#F5F7FA" font-size="17" font-weight="700" letter-spacing="2">STATE</text>
+      <path d="M32 80H170" stroke="#344052"/>
+      <path d="M39 120C58 95 76 140 96 114C116 88 135 136 164 106" stroke="#45CBD0" stroke-width="2"/>
+    </g>
+
+    <path d="M314 296C344 296 362 266 396 266" stroke="url(#request)" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M598 266H708" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M910 266H1020" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M1222 266C1275 266 1272 395 1308 395" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M1396 526C1396 594 1289 665 1222 665" stroke="#9489FF" stroke-width="3" marker-end="url(#arrowV)"/>
+    <path d="M1042 665H910" stroke="url(#response)" stroke-width="3" marker-end="url(#arrowT)"/>
+    <path d="M708 665H598" stroke="#45CBD0" stroke-width="3" marker-end="url(#arrowT)"/>
+    <path d="M396 665C350 665 339 540 314 540" stroke="url(#response)" stroke-width="3" marker-end="url(#arrowT)"/>
+
+    <text x="339" y="278" fill="#9489FF" font-size="11" font-weight="700" letter-spacing="2">REQ</text>
+    <text x="339" y="681" fill="#45CBD0" font-size="11" font-weight="700" letter-spacing="2">RES</text>
+
+    <g transform="translate(108 770)">
+      <text x="0" y="0" fill="#77859A" font-size="11" font-weight="700" letter-spacing="2">01</text>
+      <path d="M40 -4H252" stroke="#394457"/>
+      <text x="280" y="0" fill="#77859A" font-size="11" font-weight="700" letter-spacing="2">02</text>
+      <path d="M320 -4H532" stroke="#394457"/>
+      <text x="560" y="0" fill="#77859A" font-size="11" font-weight="700" letter-spacing="2">03</text>
+      <path d="M600 -4H812" stroke="#394457"/>
+      <text x="840" y="0" fill="#77859A" font-size="11" font-weight="700" letter-spacing="2">04</text>
+      <path d="M880 -4H1092" stroke="#394457"/>
+      <text x="1120" y="0" fill="#77859A" font-size="11" font-weight="700" letter-spacing="2">05</text>
+      <path d="M1160 -4H1378" stroke="#394457"/>
+    </g>
+  </g>
+
+  <circle cx="354" cy="286" r="7" fill="#9489FF" filter="url(#glowV)"/>
+  <circle cx="354" cy="650" r="7" fill="#45CBD0" filter="url(#glowT)"/>
+  <circle cx="659" cy="266" r="4" fill="#9489FF"/>
+  <circle cx="661" cy="665" r="4" fill="#45CBD0"/>
+  <circle cx="1258" cy="300" r="4" fill="#9489FF"/>
+  <circle cx="1278" cy="627" r="4" fill="#45CBD0"/>
+</svg>

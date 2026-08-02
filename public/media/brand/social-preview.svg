@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="signal" x1="128" y1="166" x2="1068" y2="468" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9489FF"/>
+      <stop offset="0.52" stop-color="#7164F4"/>
+      <stop offset="1" stop-color="#45CBD0"/>
+    </linearGradient>
+    <linearGradient id="surface" x1="600" y1="0" x2="600" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#121823"/>
+      <stop offset="1" stop-color="#080B10"/>
+    </linearGradient>
+    <pattern id="minorGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#222B39" stroke-width="1"/>
+    </pattern>
+    <pattern id="majorGrid" width="160" height="160" patternUnits="userSpaceOnUse">
+      <rect width="160" height="160" fill="none"/>
+      <path d="M160 0H0V160" stroke="#313B4C" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="violetField" cx="0" cy="0" r="1" gradientTransform="translate(256 246) rotate(26.2) scale(420 310)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7164F4" stop-opacity="0.19"/>
+      <stop offset="1" stop-color="#7164F4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tealField" cx="0" cy="0" r="1" gradientTransform="translate(982 416) rotate(-158.5) scale(340 250)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#45CBD0" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#45CBD0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-120%" y="-120%" width="340%" height="340%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowViolet" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1L9 5L1 9" stroke="#9489FF" stroke-width="1.5" fill="none"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1L9 5L1 9" stroke="#45CBD0" stroke-width="1.5" fill="none"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#surface)"/>
+  <rect width="1200" height="630" fill="url(#minorGrid)" opacity="0.52"/>
+  <rect width="1200" height="630" fill="url(#majorGrid)" opacity="0.48"/>
+  <rect width="1200" height="630" fill="url(#violetField)"/>
+  <rect width="1200" height="630" fill="url(#tealField)"/>
+  <path d="M72 64H1128" stroke="#354052"/>
+  <path d="M72 566H1128" stroke="#354052"/>
+  <circle cx="72" cy="64" r="4" fill="#9489FF"/>
+  <circle cx="1128" cy="566" r="4" fill="#45CBD0"/>
+
+  <g transform="translate(82 117)">
+    <rect width="366" height="366" rx="42" fill="#10151D" stroke="#344052" stroke-width="2"/>
+    <path d="M0 92H366M0 184H366M0 276H366M92 0V366M184 0V366M276 0V366" stroke="#252E3C"/>
+    <path d="M155 86H101C75.043 86 54 104.804 54 128C54 151.196 75.043 170 101 170H126C151.957 170 173 188.804 173 212C173 235.196 151.957 254 126 254H59" stroke="url(#signal)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M190 254L238 86H277L328 254M214 189H305" stroke="url(#signal)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="54" cy="128" r="8" fill="#9489FF" filter="url(#glow)"/>
+    <circle cx="328" cy="254" r="8" fill="#45CBD0" filter="url(#glow)"/>
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="500" y="123" fill="#F5F7FA" font-size="22" font-weight="650" letter-spacing="5">SAMIR AJAJ</text>
+    <text x="500" y="156" fill="#A4AFC0" font-size="13" font-weight="600" letter-spacing="3.5">UI · API · DB</text>
+
+    <path d="M519 309C581 309 595 240 658 240H723" stroke="#9489FF" stroke-width="2" marker-end="url(#arrowViolet)"/>
+    <path d="M797 240H862C917 240 931 309 989 309" stroke="#9489FF" stroke-width="2" marker-end="url(#arrowViolet)"/>
+    <path d="M989 349C927 349 916 418 853 418H788" stroke="#45CBD0" stroke-width="2" marker-end="url(#arrowTeal)"/>
+    <path d="M714 418H650C593 418 580 349 519 349" stroke="#45CBD0" stroke-width="2" marker-end="url(#arrowTeal)"/>
+
+    <g transform="translate(482 278)">
+      <rect width="74" height="102" rx="14" fill="#151C27" stroke="#485368"/>
+      <circle cx="37" cy="31" r="9" fill="#9489FF"/>
+      <text x="37" y="71" fill="#F5F7FA" font-size="14" font-weight="650" text-anchor="middle">UI</text>
+    </g>
+    <g transform="translate(704 204)">
+      <rect width="112" height="72" rx="14" fill="#151C27" stroke="#485368"/>
+      <circle cx="24" cy="36" r="6" fill="#9489FF"/>
+      <text x="68" y="41" fill="#F5F7FA" font-size="14" font-weight="650" text-anchor="middle">API</text>
+    </g>
+    <g transform="translate(704 382)">
+      <rect width="112" height="72" rx="14" fill="#151C27" stroke="#485368"/>
+      <circle cx="24" cy="36" r="6" fill="#45CBD0"/>
+      <text x="69" y="41" fill="#F5F7FA" font-size="14" font-weight="650" text-anchor="middle">AUTH</text>
+    </g>
+    <g transform="translate(952 278)">
+      <ellipse cx="37" cy="18" rx="37" ry="18" fill="#18212C" stroke="#485368"/>
+      <path d="M0 18V75C0 84.941 16.565 93 37 93C57.435 93 74 84.941 74 75V18" fill="#151C27" stroke="#485368"/>
+      <path d="M0 45C0 54.941 16.565 63 37 63C57.435 63 74 54.941 74 45" stroke="#45CBD0"/>
+      <text x="37" y="52" fill="#F5F7FA" font-size="13" font-weight="650" text-anchor="middle">DB</text>
+    </g>
+
+    <g transform="translate(500 494)" font-size="12" font-weight="650" letter-spacing="1.4">
+      <rect width="92" height="32" rx="16" fill="#161D28" stroke="#344052"/>
+      <text x="46" y="21" fill="#C7CFDB" text-anchor="middle">REACT</text>
+      <rect x="104" width="132" height="32" rx="16" fill="#161D28" stroke="#344052"/>
+      <text x="170" y="21" fill="#C7CFDB" text-anchor="middle">TYPESCRIPT</text>
+      <rect x="248" width="78" height="32" rx="16" fill="#161D28" stroke="#344052"/>
+      <text x="287" y="21" fill="#C7CFDB" text-anchor="middle">GSAP</text>
+      <rect x="338" width="92" height="32" rx="16" fill="#161D28" stroke="#344052"/>
+      <text x="384" y="21" fill="#C7CFDB" text-anchor="middle">I18NEXT</text>
+    </g>
+  </g>
+</svg>
