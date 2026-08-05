@@ -16,7 +16,8 @@
     "reloadPage": "إعادة تحميل الصفحة",
     "previousProject": "المشروع السابق",
     "nextProject": "المشروع التالي",
-    "switchTheme": "تبديل السمة إلى {{theme}}"
+    "switchTheme": "تبديل السمة إلى {{theme}}",
+    "downloadCv": "تحميل السيرة الذاتية"
   },
   "status": {
     "completed": "مكتمل",

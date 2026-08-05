@@ -2,6 +2,7 @@ import { useRef } from "react"
 import {
   ArrowDownIcon,
   BriefcaseBusinessIcon,
+  DownloadIcon,
   GitForkIcon,
   MailIcon,
   PhoneIcon,
@@ -29,6 +30,7 @@ type HeroSectionProps = {
   identity: LocalizedPortfolioData["identity"]
   hero: LocalizedPortfolioData["hero"]
   contact: LocalizedPortfolioData["contact"]
+  cv: LocalizedPortfolioData["cv"]
   avatar: MediaAsset | null
 }
 
@@ -38,6 +40,7 @@ export function HeroSection({
   identity,
   hero,
   contact,
+  cv,
   avatar,
 }: HeroSectionProps) {
   const { t } = useTranslation(["common", "site"])
@@ -176,6 +179,19 @@ export function HeroSection({
                   {t("actions.sendEmail")}
                 </a>
               </Button>
+              {cv.available && cv.filePath && cv.fileName ? (
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="min-h-12 px-5"
+                >
+                  <a href={cv.filePath} download={cv.fileName}>
+                    <DownloadIcon data-icon="inline-start" aria-hidden="true" />
+                    {t("actions.downloadCv")}
+                  </a>
+                </Button>
+              ) : null}
               {linkedin ? (
                 <Button
                   asChild

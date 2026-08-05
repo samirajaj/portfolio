@@ -35,6 +35,7 @@ export function HomePage() {
         identity={portfolio.identity}
         hero={portfolio.hero}
         contact={portfolio.contact}
+        cv={portfolio.cv}
         avatar={portfolioMedia.profile.avatar}
       />
       <SelectedWorkSection locale={locale} projects={featuredProjects} />

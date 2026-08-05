@@ -16,7 +16,8 @@
     "reloadPage": "Reload page",
     "previousProject": "Previous project",
     "nextProject": "Next project",
-    "switchTheme": "Switch theme to {{theme}}"
+    "switchTheme": "Switch theme to {{theme}}",
+    "downloadCv": "Download CV"
   },
   "status": {
     "completed": "Completed",
