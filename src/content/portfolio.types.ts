@@ -39,9 +39,12 @@ export type PortfolioMediaManifest = Readonly<{
     avatar: MediaAsset | null
   }>
   projects: Readonly<{
-    autonest: Readonly<{ systemMap: MediaAsset }>
-    marketplace: Readonly<{ systemMap: MediaAsset }>
-    "media-storage": Readonly<{ systemMap: MediaAsset }>
+    placeholder: MediaAsset
+  }>
+  organizations: Readonly<{
+    digit: MediaAsset
+    damascusUniversity: MediaAsset
+    syrianVirtualUniversity: MediaAsset
   }>
   documents: Readonly<{
     cv: DocumentAsset | null
@@ -51,6 +54,7 @@ export type PortfolioMediaManifest = Readonly<{
 export type PortfolioIdentity = Readonly<{
   name: string
   initials: string
+  avatarAlt: LocalizedText
   professionalTitle: LocalizedText
   shortIntroduction: LocalizedText
 }>
@@ -108,7 +112,8 @@ export type PortfolioExperience = Readonly<{
   id: string
   role: LocalizedText
   organization: LocalizedText
-  engagement: "freelance"
+  engagement: "internship" | "freelance"
+  logo: MediaAsset | null
   period: DateRange
   description: LocalizedText
   responsibilities: readonly LocalizedText[]
@@ -119,6 +124,7 @@ export type PortfolioEducation = Readonly<{
   credential: LocalizedText
   institution: LocalizedText
   period: DateRange
+  logo: MediaAsset | null
   description: LocalizedText
 }>
 
@@ -153,7 +159,7 @@ export type PortfolioProject = Readonly<{
   slug: string
   status: ProjectStatus
   featured: boolean
-  year: number
+  year: number | null
   order: number
   title: LocalizedText
   descriptor: LocalizedText

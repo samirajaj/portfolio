@@ -78,20 +78,33 @@ export function AboutSection({
               </h3>
               <div className="flex flex-col gap-5 border-t border-border pt-5">
                 {experience.map((item) => (
-                  <article key={item.id} className="flex flex-col gap-2">
-                    <Period
-                      start={item.period.start}
-                      end={item.period.end}
-                      current={item.period.current}
-                      currentLabel={t("common:labels.current")}
-                    />
-                    <h4 className="font-semibold">{item.role}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      {item.organization}
-                    </p>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                      {item.description}
-                    </p>
+                  <article key={item.id} className="flex items-start gap-4">
+                    {item.logo ? (
+                      <img
+                        src={item.logo.src}
+                        width={item.logo.width}
+                        height={item.logo.height}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="size-12 shrink-0 rounded-lg border border-border object-contain"
+                      />
+                    ) : null}
+                    <div className="flex min-w-0 flex-col gap-2">
+                      <Period
+                        start={item.period.start}
+                        end={item.period.end}
+                        current={item.period.current}
+                        currentLabel={t("common:labels.current")}
+                      />
+                      <h4 className="font-semibold">{item.role}</h4>
+                      <p className="text-sm text-muted-foreground">
+                        {item.organization}
+                      </p>
+                      <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
                   </article>
                 ))}
               </div>
@@ -106,17 +119,30 @@ export function AboutSection({
               </h3>
               <div className="flex flex-col gap-6 border-t border-border pt-5">
                 {education.map((item) => (
-                  <article key={item.id} className="flex flex-col gap-2">
-                    <Period
-                      start={item.period.start}
-                      end={item.period.end}
-                      current={item.period.current}
-                      currentLabel={t("common:labels.current")}
-                    />
-                    <h4 className="font-semibold">{item.credential}</h4>
-                    <p className="text-sm leading-6 text-muted-foreground">
-                      {item.institution}
-                    </p>
+                  <article key={item.id} className="flex items-start gap-4">
+                    {item.logo ? (
+                      <img
+                        src={item.logo.src}
+                        width={item.logo.width}
+                        height={item.logo.height}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="size-12 shrink-0 rounded-lg border border-border object-contain"
+                      />
+                    ) : null}
+                    <div className="flex min-w-0 flex-col gap-2">
+                      <Period
+                        start={item.period.start}
+                        end={item.period.end}
+                        current={item.period.current}
+                        currentLabel={t("common:labels.current")}
+                      />
+                      <h4 className="font-semibold">{item.credential}</h4>
+                      <p className="text-sm leading-6 text-muted-foreground">
+                        {item.institution}
+                      </p>
+                    </div>
                   </article>
                 ))}
               </div>

@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next"
 import { Link } from "react-router"
 
 import { LanguageSwitcher } from "@/components/common/language-switcher"
+import { ThemeSwitcher } from "@/components/common/theme-switcher"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -100,6 +101,7 @@ export function SiteHeader({
 
         <div className="hidden items-center gap-2 lg:flex">
           <LanguageSwitcher locale={locale} />
+          <ThemeSwitcher />
           {linkedin ? (
             <Button asChild variant="ghost" size="icon" className="size-11">
               <a
@@ -196,6 +198,7 @@ export function SiteHeader({
                   locale={locale}
                   onNavigate={() => setMenuOpen(false)}
                 />
+                <ThemeSwitcher showLabel />
                 <div className="grid gap-2 sm:grid-cols-2">
                   <Button asChild className="min-h-11">
                     <a href={getEmailHref(contact.email)}>

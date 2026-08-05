@@ -15,7 +15,8 @@
     "switchLanguage": "التبديل إلى {{language}}",
     "reloadPage": "إعادة تحميل الصفحة",
     "previousProject": "المشروع السابق",
-    "nextProject": "المشروع التالي"
+    "nextProject": "المشروع التالي",
+    "switchTheme": "تبديل السمة إلى {{theme}}"
   },
   "status": {
     "completed": "مكتمل",
@@ -40,7 +41,13 @@
     "english": "English",
     "arabic": "العربية",
     "request": "الطلب",
-    "response": "الاستجابة"
+    "response": "الاستجابة",
+    "notSpecified": "غير محدد"
+  },
+  "themes": {
+    "system": "سمة النظام",
+    "light": "السمة الفاتحة",
+    "dark": "السمة الداكنة"
   },
   "a11y": {
     "skipToContent": "تجاوز إلى المحتوى الرئيسي",

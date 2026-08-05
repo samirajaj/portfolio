@@ -1,20 +1,25 @@
 import { localizedText } from "./localized-content"
 import { portfolioMedia } from "./portfolio-media"
-import type { PortfolioData } from "./portfolio.types"
+import type {
+  LocalizedText,
+  PortfolioData,
+  PortfolioProject,
+} from "./portfolio.types"
 
 const text = localizedText
 
-export const portfolioData = {
+const portfolioDataSource = {
   identity: {
     name: "Samir Ajaj",
     initials: "SA",
+    avatarAlt: text("Portrait of Samir Ajaj", "صورة شخصية لسمير عجاج"),
     professionalTitle: text(
-      "Freelance Full-Stack Developer",
-      "مطوّر تطبيقات متكاملة مستقل"
+      "Full-Stack Developer | ASP.NET Core, Next.js & React",
+      "مطوّر تطبيقات متكاملة | ASP.NET Core وNext.js وReact"
     ),
     shortIntroduction: text(
-      "I design and build maintainable web products across modern JavaScript and .NET ecosystems.",
-      "أصمّم وأبني منتجات ويب قابلة للصيانة ضمن منظومتي JavaScript الحديثة و.NET."
+      "I build responsive, multilingual web applications, REST APIs, and database-driven systems.",
+      "أبني تطبيقات ويب متجاوبة ومتعددة اللغات وواجهات REST وأنظمة تعتمد على قواعد البيانات."
     ),
   },
   hero: {
@@ -28,8 +33,8 @@ export const portfolioData = {
       "أعمل باستخدام React وTypeScript وNext.js وC# و.NET لبناء واجهات متعددة اللغات وأنظمة خلفية قابلة للصيانة بحدود تقنية واضحة."
     ),
     availability: text(
-      "Freelance full-stack development · 2024—Present",
-      "تطوير تطبيقات متكاملة بشكل مستقل · 2024—الآن"
+      "Frontend Developer Intern at DIGIT Innovation Hub · July 2026—Present",
+      "متدرب تطوير واجهات أمامية في DIGIT Innovation Hub · يوليو 2026—الآن"
     ),
     stackHighlights: ["React", "TypeScript", "Next.js", "C#", ".NET"],
     proofPoints: [
@@ -97,7 +102,7 @@ export const portfolioData = {
     email: "samirajaj.official@gmail.com",
     phone: "+963 985 215 130",
     links: [
-      { id: "linkedin", url: "https://linkedin.com/in/samirajaj" },
+      { id: "linkedin", url: "https://linkedin.com/in/sameerajaj" },
       { id: "github", url: "https://github.com/samirajaj" },
       { id: "website", url: "https://samirajaj.vercel.app" },
     ],
@@ -120,9 +125,9 @@ export const portfolioData = {
     ],
   },
   cv: {
-    available: false,
-    filePath: null,
-    fileName: null,
+    available: true,
+    filePath: portfolioMedia.documents.cv?.src ?? null,
+    fileName: portfolioMedia.documents.cv?.fileName ?? null,
   },
   services: [
     {
@@ -261,74 +266,74 @@ export const portfolioData = {
   ],
   experience: [
     {
-      id: "freelance-full-stack-developer",
-      role: text(
-        "Freelance Full-Stack Developer",
-        "مطوّر تطبيقات متكاملة مستقل"
-      ),
-      organization: text("Independent", "عمل مستقل"),
-      engagement: "freelance",
+      id: "digit-frontend-developer-intern",
+      role: text("Frontend Developer Intern", "متدرب تطوير واجهات أمامية"),
+      organization: text("DIGIT Innovation Hub", "مركز DIGIT للابتكار"),
+      engagement: "internship",
+      logo: portfolioMedia.organizations.digit,
       period: {
-        start: "2024",
+        start: "2026-07",
         end: null,
         current: true,
       },
       description: text(
-        "Building independent full-stack web applications across React, TypeScript, Next.js, C#, and .NET, with an emphasis on clean boundaries and multilingual product experiences.",
-        "بناء تطبيقات ويب متكاملة بشكل مستقل باستخدام React وTypeScript وNext.js وC# و.NET، مع التركيز على الحدود الواضحة وتجارب المنتجات متعددة اللغات."
+        "Leading frontend implementation for Digit Management System in a cross-functional Agile team, translating Figma designs into responsive, role-aware, bilingual workflows.",
+        "تولّي تنفيذ الواجهة الأمامية لنظام Digit Management System ضمن فريق أجايل متعدد التخصصات، وتحويل تصاميم Figma إلى مسارات متجاوبة وثنائية اللغة تراعي الأدوار."
       ),
       responsibilities: [
         text(
-          "Translate product workflows into interface, service, and persistence boundaries.",
-          "تحويل مسارات المنتجات إلى حدود واضحة للواجهة والخدمات وحفظ البيانات."
+          "Build workflows for events, rooms, bookings, calendars, attendees, and administration.",
+          "بناء مسارات الفعاليات والقاعات والحجوزات والتقويمات والحضور والإدارة."
         ),
         text(
-          "Implement authentication, role-aware authorization, and data validation.",
-          "تنفيذ المصادقة والصلاحيات المرتبطة بالأدوار والتحقق من البيانات."
+          "Coordinate API integration and defect resolution with backend and QA teammates.",
+          "تنسيق تكامل واجهات API ومعالجة العيوب مع فريق الخلفية وضمان الجودة."
         ),
         text(
-          "Build English and Arabic experiences with direction-aware layouts.",
-          "بناء تجارب بالعربية والإنجليزية مع تخطيطات تراعي اتجاه القراءة."
+          "Deliver locale-aware English and Arabic interfaces with complete LTR and RTL layouts.",
+          "تقديم واجهات عربية وإنجليزية مرتبطة باللغة مع تخطيطات LTR وRTL كاملة."
         ),
       ],
     },
   ],
   education: [
     {
-      id: "software-engineering-diploma",
+      id: "information-technology-engineering",
       credential: text(
-        "Diploma in Software Engineering",
-        "دبلوم في هندسة البرمجيات"
-      ),
-      institution: text("TCC", "TCC"),
-      period: {
-        start: "2023",
-        end: "2026",
-        current: false,
-      },
-      description: text(
-        "Formal diploma studies in software engineering completed across the 2023–2026 program period.",
-        "دراسة دبلوم أكاديمية في هندسة البرمجيات ضمن البرنامج الممتد من 2023 إلى 2026."
-      ),
-    },
-    {
-      id: "information-technology-engineering-bsc",
-      credential: text(
-        "BSc in Information Technology Engineering",
-        "بكالوريوس في هندسة تقانة المعلومات"
+        "Bachelor of Engineering in Information Technology",
+        "بكالوريوس هندسة في تقانة المعلومات"
       ),
       institution: text(
-        "Syrian Virtual University (SVU)",
-        "الجامعة الافتراضية السورية (SVU)"
+        "Syrian Virtual University",
+        "الجامعة الافتراضية السورية"
       ),
+      logo: portfolioMedia.organizations.syrianVirtualUniversity,
       period: {
-        start: "2023",
-        end: null,
+        start: "2023-10",
+        end: "2029-10",
         current: true,
       },
       description: text(
-        "Ongoing undergraduate study in information technology engineering.",
-        "دراسة جامعية مستمرة في هندسة تقانة المعلومات."
+        "Ongoing engineering study covering software engineering, databases, algorithms, systems analysis, and web application development.",
+        "دراسة هندسية مستمرة تشمل هندسة البرمجيات وقواعد البيانات والخوارزميات وتحليل الأنظمة وتطوير تطبيقات الويب."
+      ),
+    },
+    {
+      id: "computer-software-engineering",
+      credential: text(
+        "Associate Degree in Computer Software Engineering",
+        "درجة جامعية متوسطة في هندسة برمجيات الحاسوب"
+      ),
+      institution: text("Damascus University", "جامعة دمشق"),
+      logo: portfolioMedia.organizations.damascusUniversity,
+      period: {
+        start: "2023-10",
+        end: "2027-02",
+        current: true,
+      },
+      description: text(
+        "Graduation project: AutoNest vehicle sales and rental platform, awarded 97/100—the highest project grade in the cohort.",
+        "مشروع التخرج: منصة AutoNest لبيع وتأجير المركبات، وحصلت على 97/100 وهي أعلى علامة مشروع في الدفعة."
       ),
     },
   ],
@@ -538,7 +543,7 @@ export const portfolioData = {
       ],
       images: [
         {
-          ...portfolioMedia.projects.autonest.systemMap,
+          ...portfolioMedia.projects.placeholder,
           kind: "system-map",
           alt: text(
             "AutoNest system map connecting localized interfaces, role checks, feature services, MongoDB, and Cloudinary.",
@@ -758,7 +763,7 @@ export const portfolioData = {
       ],
       images: [
         {
-          ...portfolioMedia.projects.marketplace.systemMap,
+          ...portfolioMedia.projects.placeholder,
           kind: "system-map",
           alt: text(
             "Marketplace system map connecting bilingual storefront and dashboards to authorization, transactional checkout, MongoDB, and Cloudinary.",
@@ -942,7 +947,7 @@ export const portfolioData = {
       ],
       images: [
         {
-          ...portfolioMedia.projects["media-storage"].systemMap,
+          ...portfolioMedia.projects.placeholder,
           kind: "system-map",
           alt: text(
             "Media Storage system map showing consuming applications, the abstraction contract, dependency injection, and the Cloudinary provider.",
@@ -982,3 +987,306 @@ export const portfolioData = {
     ],
   },
 } as const satisfies PortfolioData
+
+type CvProjectSeed = Readonly<{
+  slug: string
+  status: PortfolioProject["status"]
+  featured: boolean
+  year: number | null
+  order: number
+  title: LocalizedText
+  descriptor: LocalizedText
+  summary: LocalizedText
+  role: LocalizedText
+  architecture: LocalizedText
+  responsibilities: readonly LocalizedText[]
+  capabilities: readonly LocalizedText[]
+  technologies: readonly string[]
+}>
+
+function createCvProject(seed: CvProjectSeed): PortfolioProject {
+  return {
+    ...seed,
+    context: seed.summary,
+    problem: text(
+      "Translate a complex business domain into secure, maintainable workflows for multiple user roles.",
+      "تحويل مجال عمل معقد إلى مسارات آمنة وقابلة للصيانة لعدة أدوار من المستخدمين."
+    ),
+    scope: text(
+      "Product interface, application workflows, authorization boundaries, data integration, responsive behavior, and bilingual support where applicable.",
+      "واجهة المنتج ومسارات التطبيق وحدود الصلاحيات وتكامل البيانات والسلوك المتجاوب ودعم اللغتين عند الحاجة."
+    ),
+    solution: seed.summary,
+    interfaceWork: text(
+      "Built reusable, responsive screens and forms around the primary workflows, with role-aware states and clear validation feedback.",
+      "بناء شاشات ونماذج متجاوبة وقابلة لإعادة الاستخدام حول المسارات الأساسية، مع حالات تراعي الأدوار ورسائل تحقق واضحة."
+    ),
+    responsiveBehavior: text(
+      "Layouts adapt across desktop and mobile and preserve the intended reading order in both LTR and RTL interfaces.",
+      "تتكيف التخطيطات بين سطح المكتب والهاتف وتحافظ على ترتيب القراءة المقصود في واجهات LTR وRTL."
+    ),
+    decisions: [
+      {
+        title: text(
+          "Organize code around product responsibilities",
+          "تنظيم الشيفرة حول مسؤوليات المنتج"
+        ),
+        context: text(
+          "The product combines several roles, workflows, and integration boundaries that need clear ownership.",
+          "يجمع المنتج عدة أدوار ومسارات وحدود تكامل تحتاج إلى ملكية واضحة."
+        ),
+        decision: seed.architecture,
+        alternatives: text(
+          "A flat structure organized only by technical file type.",
+          "بنية مسطحة منظمة حسب نوع الملف التقني فقط."
+        ),
+        tradeOff: text(
+          "Clearer feature ownership requires deliberate boundaries and consistent conventions.",
+          "تتطلب ملكية الميزات الأكثر وضوحاً حدوداً مدروسة واتفاقيات متسقة."
+        ),
+      },
+    ],
+    tradeOffs: [
+      text(
+        "The implementation prioritizes clear business workflows and maintainability over minimizing the number of architectural layers.",
+        "يعطي التنفيذ الأولوية لوضوح مسارات العمل وقابلية الصيانة على حساب تقليل عدد الطبقات المعمارية."
+      ),
+    ],
+    challenges: [
+      text(
+        "Keep authorization, validation, interface state, and persisted data consistent across role-specific workflows.",
+        "الحفاظ على اتساق الصلاحيات والتحقق وحالة الواجهة والبيانات المحفوظة عبر مسارات الأدوار المختلفة."
+      ),
+    ],
+    outcomes: seed.responsibilities,
+    images: [
+      {
+        ...portfolioMedia.projects.placeholder,
+        kind: "interface",
+        alt: text(
+          `Placeholder image for ${seed.title.en}`,
+          `صورة مؤقتة لمشروع ${seed.title.ar}`
+        ),
+        caption: text(
+          "Project imagery will replace this temporary placeholder.",
+          "ستحل صور المشروع محل هذه الصورة المؤقتة."
+        ),
+      },
+    ],
+    links: {},
+  }
+}
+
+const cvProjects: readonly PortfolioProject[] = [
+  createCvProject({
+    slug: "digit-management-system",
+    status: "in-progress",
+    featured: true,
+    year: 2026,
+    order: 3,
+    title: text("Digit Management System", "نظام إدارة Digit"),
+    descriptor: text(
+      "Professional team project for Digit Center",
+      "مشروع فريق احترافي لمركز Digit"
+    ),
+    summary: text(
+      "A bilingual, role-aware management system for events, rooms, bookings, calendars, attendees, and administrative operations, developed within a cross-functional product team.",
+      "نظام إدارة ثنائي اللغة يراعي الأدوار للفعاليات والقاعات والحجوزات والتقويمات والحضور والعمليات الإدارية، طُوّر ضمن فريق منتج متعدد التخصصات."
+    ),
+    role: text("Frontend Developer", "مطوّر واجهات أمامية"),
+    architecture: text(
+      "A feature-based Next.js App Router architecture uses a Backend-for-Frontend layer to centralize NestJS API communication, with TanStack Query for server state and reusable validated forms.",
+      "تعتمد بنية Next.js App Router على الميزات وتستخدم طبقة Backend-for-Frontend لمركزة الاتصال مع NestJS API، مع TanStack Query لحالة الخادم ونماذج موحدة خاضعة للتحقق."
+    ),
+    responsibilities: [
+      text(
+        "Implemented authentication, protected routes, permission-based interfaces, and reusable validated forms.",
+        "تنفيذ المصادقة والمسارات المحمية والواجهات المبنية على الصلاحيات والنماذج القابلة لإعادة الاستخدام."
+      ),
+      text(
+        "Delivered complete English, Arabic, LTR, and RTL workflows from Figma designs.",
+        "تقديم مسارات كاملة بالعربية والإنجليزية وباتجاهي LTR وRTL انطلاقاً من تصاميم Figma."
+      ),
+    ],
+    capabilities: [
+      text("Event and room management", "إدارة الفعاليات والقاعات"),
+      text("Bookings and calendars", "الحجوزات والتقويمات"),
+      text("Role-aware administration", "إدارة تراعي الأدوار"),
+      text("Bilingual workflows", "مسارات ثنائية اللغة"),
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "TanStack Query",
+      "Tailwind CSS",
+      "shadcn/ui",
+    ],
+  }),
+  createCvProject({
+    slug: "autonest-nextjs",
+    status: "in-progress",
+    featured: false,
+    year: null,
+    order: 4,
+    title: text("AutoNest — Next.js Edition", "AutoNest — إصدار Next.js"),
+    descriptor: text(
+      "Full-stack TypeScript reimplementation",
+      "إعادة تنفيذ متكاملة باستخدام TypeScript"
+    ),
+    summary: text(
+      "A full-stack Next.js reimplementation of the AutoNest vehicle marketplace using MongoDB, Better Auth, Cloudinary, Resend, validated forms, and bilingual application flows.",
+      "إعادة تنفيذ متكاملة لمنصة AutoNest باستخدام Next.js وMongoDB وBetter Auth وCloudinary وResend ونماذج خاضعة للتحقق ومسارات تطبيق ثنائية اللغة."
+    ),
+    role: text("Full-Stack Developer", "مطوّر تطبيقات متكاملة"),
+    architecture: text(
+      "Next.js owns the product boundary, Mongoose models persistence, Better Auth handles identity, Cloudinary manages vehicle media, and Resend delivers transactional email.",
+      "يتولى Next.js حدود المنتج، وتدير Mongoose الاستمرار، وتعالج Better Auth الهوية، وتدير Cloudinary صور المركبات، وتقدم Resend البريد الإلكتروني للمعاملات."
+    ),
+    responsibilities: [
+      text(
+        "Implemented role-aware authentication and access.",
+        "تنفيذ المصادقة والوصول المراعي للأدوار."
+      ),
+      text(
+        "Integrated vehicle images and transactional email.",
+        "تكامل صور المركبات والبريد الإلكتروني للمعاملات."
+      ),
+    ],
+    capabilities: [
+      text("Vehicle marketplace", "سوق المركبات"),
+      text("Role-aware access", "وصول يراعي الأدوار"),
+      text("Media management", "إدارة الوسائط"),
+      text("Bilingual forms", "نماذج ثنائية اللغة"),
+    ],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "MongoDB",
+      "Mongoose",
+      "Better Auth",
+      "Cloudinary",
+      "Resend",
+    ],
+  }),
+  createCvProject({
+    slug: "dar-al-fajr",
+    status: "concept",
+    featured: false,
+    year: null,
+    order: 5,
+    title: text("Dar Al-Fajr Publishing Platform", "منصة دار الفجر للنشر"),
+    descriptor: text("Frontend prototype", "نموذج أولي للواجهة الأمامية"),
+    summary: text(
+      "A responsive, content-focused frontend prototype for a Quran and Islamic-books publisher, created to validate interface direction and core workflows before production integration with a Laravel API.",
+      "نموذج أولي متجاوب يركز على المحتوى لناشر مصاحف وكتب إسلامية، أُنشئ للتحقق من اتجاه الواجهة والمسارات الأساسية قبل التكامل الإنتاجي مع Laravel API."
+    ),
+    role: text("Frontend Developer", "مطوّر واجهات أمامية"),
+    architecture: text(
+      "Reusable Next.js and Material UI patterns organize content presentation, forms, state, and multilingual layouts around a future Laravel API integration.",
+      "تنظم أنماط Next.js وMaterial UI القابلة لإعادة الاستخدام عرض المحتوى والنماذج والحالة والتخطيطات متعددة اللغات استعداداً للتكامل مع Laravel API."
+    ),
+    responsibilities: [
+      text(
+        "Validated the proposed interface and primary workflows.",
+        "التحقق من الواجهة المقترحة والمسارات الأساسية."
+      ),
+      text(
+        "Built responsive, multilingual content screens.",
+        "بناء شاشات محتوى متجاوبة ومتعددة اللغات."
+      ),
+    ],
+    capabilities: [
+      text("Publishing catalog", "فهرس النشر"),
+      text("Content-focused screens", "شاشات تركز على المحتوى"),
+      text("Multilingual layouts", "تخطيطات متعددة اللغات"),
+    ],
+    technologies: ["Next.js", "TypeScript", "Material UI", "Laravel API"],
+  }),
+  createCvProject({
+    slug: "personal-portfolio",
+    status: "in-progress",
+    featured: false,
+    year: 2026,
+    order: 6,
+    title: text("Personal Portfolio", "معرض الأعمال الشخصي"),
+    descriptor: text(
+      "Bilingual portfolio and case-study platform",
+      "معرض أعمال ودراسات حالة ثنائي اللغة"
+    ),
+    summary: text(
+      "A responsive portfolio presenting professional experience, technical capabilities, and project case studies with locale-aware navigation, complete RTL support, and accessible GSAP motion.",
+      "معرض أعمال متجاوب يعرض الخبرة المهنية والقدرات التقنية ودراسات حالة المشاريع مع تنقل مرتبط باللغة ودعم RTL كامل وحركة GSAP تراعي الوصول."
+    ),
+    role: text("Designer and Developer", "المصمم والمطوّر"),
+    architecture: text(
+      "A React Router application separates localized portfolio content from reusable interface translations and uses feature-owned components with GSAP timelines that respect reduced-motion preferences.",
+      "يفصل تطبيق React Router محتوى معرض الأعمال المترجم عن ترجمات الواجهة القابلة لإعادة الاستخدام، ويستخدم مكونات مملوكة للميزات وحركات GSAP تراعي تفضيلات تقليل الحركة."
+    ),
+    responsibilities: [
+      text(
+        "Centralized bilingual content in a typed data model.",
+        "مركزة المحتوى الثنائي اللغة في نموذج بيانات مكتوب الأنواع."
+      ),
+      text(
+        "Implemented locale routes, RTL layouts, themes, and reduced motion.",
+        "تنفيذ مسارات اللغة وتخطيطات RTL والسمات وتقليل الحركة."
+      ),
+    ],
+    capabilities: [
+      text("Localized case studies", "دراسات حالة مترجمة"),
+      text("Theme selection", "اختيار السمة"),
+      text("Responsive RTL layouts", "تخطيطات RTL متجاوبة"),
+      text("Accessible motion", "حركة تراعي الوصول"),
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "React Router",
+      "Tailwind CSS",
+      "GSAP",
+      "i18next",
+    ],
+  }),
+]
+
+function withPlaceholderImage(project: PortfolioProject): PortfolioProject {
+  return {
+    ...project,
+    images: [
+      {
+        ...portfolioMedia.projects.placeholder,
+        kind: "interface",
+        alt: text(
+          `Placeholder image for ${project.title.en}`,
+          `صورة مؤقتة لمشروع ${project.title.ar}`
+        ),
+        caption: text(
+          "Project imagery will replace this temporary placeholder.",
+          "ستحل صور المشروع محل هذه الصورة المؤقتة."
+        ),
+      },
+    ],
+  }
+}
+
+export const portfolioData = {
+  ...portfolioDataSource,
+  projects: [
+    ...portfolioDataSource.projects
+      .filter((project) => project.slug !== "media-storage")
+      .map(withPlaceholderImage),
+    ...cvProjects,
+  ],
+  seo: {
+    ...portfolioDataSource.seo,
+    defaultTitle: text(
+      "Samir Ajaj — Full-Stack Developer",
+      "سمير عجاج — مطوّر تطبيقات متكاملة"
+    ),
+    description: text(
+      "Portfolio of Samir Ajaj, a full-stack developer specializing in ASP.NET Core, Next.js, React, and multilingual web applications.",
+      "معرض أعمال سمير عجاج، مطوّر تطبيقات متكاملة متخصص في ASP.NET Core وNext.js وReact وتطبيقات الويب متعددة اللغات."
+    ),
+  },
+} satisfies PortfolioData

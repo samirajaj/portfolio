@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button"
 import { SystemTraceVisual } from "@/components/visual/system-trace-visual"
 import type {
   LocalizedPortfolioData,
+  MediaAsset,
   SupportedLanguage,
 } from "@/content/portfolio.types"
 import { getEmailHref, getPhoneHref } from "@/lib/contact-links"
@@ -28,6 +29,7 @@ type HeroSectionProps = {
   identity: LocalizedPortfolioData["identity"]
   hero: LocalizedPortfolioData["hero"]
   contact: LocalizedPortfolioData["contact"]
+  avatar: MediaAsset | null
 }
 
 export function HeroSection({
@@ -36,6 +38,7 @@ export function HeroSection({
   identity,
   hero,
   contact,
+  avatar,
 }: HeroSectionProps) {
   const { t } = useTranslation(["common", "site"])
   const rootRef = useRef<HTMLElement>(null)
@@ -237,22 +240,37 @@ export function HeroSection({
           </div>
 
           <div data-hero-visual className="min-w-0 lg:col-span-5 lg:pt-2">
-            <SystemTraceVisual
-              direction={direction}
-              label={t("site:hero.systemLabel")}
-              description={t("site:hero.systemDescription")}
-              flow={{
-                request: t("labels.request"),
-                response: t("labels.response"),
-                interface: t("site:hero.flow.interface"),
-                react: t("site:hero.flow.react"),
-                api: t("site:hero.flow.api"),
-                auth: t("site:hero.flow.auth"),
-                logic: t("site:hero.flow.logic"),
-                database: t("site:hero.flow.database"),
-                verified: t("site:hero.flow.verified"),
-              }}
-            />
+            <div className="flex flex-col gap-5">
+              {avatar ? (
+                <div className="project-stage aspect-square overflow-hidden">
+                  <img
+                    src={avatar.src}
+                    width={avatar.width}
+                    height={avatar.height}
+                    alt={identity.avatarAlt}
+                    fetchPriority="high"
+                    decoding="async"
+                    className="size-full object-cover"
+                  />
+                </div>
+              ) : null}
+              <SystemTraceVisual
+                direction={direction}
+                label={t("site:hero.systemLabel")}
+                description={t("site:hero.systemDescription")}
+                flow={{
+                  request: t("labels.request"),
+                  response: t("labels.response"),
+                  interface: t("site:hero.flow.interface"),
+                  react: t("site:hero.flow.react"),
+                  api: t("site:hero.flow.api"),
+                  auth: t("site:hero.flow.auth"),
+                  logic: t("site:hero.flow.logic"),
+                  database: t("site:hero.flow.database"),
+                  verified: t("site:hero.flow.verified"),
+                }}
+              />
+            </div>
           </div>
         </div>
 

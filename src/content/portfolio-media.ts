@@ -4,13 +4,13 @@ export const portfolioMedia = {
   brand: {
     logo: {
       src: "/media/brand/logo.svg",
-      width: 256,
-      height: 256,
+      width: 1225,
+      height: 1225,
     },
     wordmark: {
-      src: "/media/brand/wordmark.svg",
-      width: 320,
-      height: 80,
+      src: "/media/brand/logo.svg",
+      width: 1225,
+      height: 1225,
     },
     favicon: {
       src: "/favicon.svg",
@@ -18,38 +18,46 @@ export const portfolioMedia = {
       height: 64,
     },
     socialPreview: {
-      src: "/media/brand/social-preview.svg",
-      width: 1200,
-      height: 630,
+      src: "/placeholder.png",
+      width: 1672,
+      height: 941,
     },
   },
   profile: {
-    avatar: null,
+    avatar: {
+      src: "/media/brand/avatar.png",
+      width: 1254,
+      height: 1254,
+    },
   },
   projects: {
-    autonest: {
-      systemMap: {
-        src: "/media/projects/autonest/system-map.svg",
-        width: 1600,
-        height: 1000,
-      },
+    placeholder: {
+      src: "/placeholder.png",
+      width: 1672,
+      height: 941,
     },
-    marketplace: {
-      systemMap: {
-        src: "/media/projects/marketplace/system-map.svg",
-        width: 1600,
-        height: 1000,
-      },
+  },
+  organizations: {
+    digit: {
+      src: "/media/experiences/Digit-logo.jpg",
+      width: 843,
+      height: 843,
     },
-    "media-storage": {
-      systemMap: {
-        src: "/media/projects/media-storage/system-map.svg",
-        width: 1600,
-        height: 1000,
-      },
+    damascusUniversity: {
+      src: "/media/educations/Damascuse-University-logo.jpg",
+      width: 422,
+      height: 384,
+    },
+    syrianVirtualUniversity: {
+      src: "/media/educations/Syrian-Virtual-University-logo.png",
+      width: 317,
+      height: 251,
     },
   },
   documents: {
-    cv: null,
+    cv: {
+      src: "/media/cv.pdf",
+      fileName: "Samir-Ajaj-CV.pdf",
+    },
   },
 } as const satisfies PortfolioMediaManifest

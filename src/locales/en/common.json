@@ -15,7 +15,8 @@
     "switchLanguage": "Switch to {{language}}",
     "reloadPage": "Reload page",
     "previousProject": "Previous project",
-    "nextProject": "Next project"
+    "nextProject": "Next project",
+    "switchTheme": "Switch theme to {{theme}}"
   },
   "status": {
     "completed": "Completed",
@@ -40,7 +41,13 @@
     "english": "English",
     "arabic": "العربية",
     "request": "Request",
-    "response": "Response"
+    "response": "Response",
+    "notSpecified": "Not specified"
+  },
+  "themes": {
+    "system": "System theme",
+    "light": "Light theme",
+    "dark": "Dark theme"
   },
   "a11y": {
     "skipToContent": "Skip to main content",

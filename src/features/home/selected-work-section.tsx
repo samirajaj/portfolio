@@ -248,7 +248,9 @@ export function SelectedWorkSection({
               const image = project.images[0]
               const decision = project.decisions[0]
               const orderLabel = orderFormatter.format(projectIndex + 1)
-              const yearLabel = yearFormatter.format(project.year)
+              const yearLabel = project.year
+                ? yearFormatter.format(project.year)
+                : t("common:labels.notSpecified")
 
               return (
                 <article
@@ -415,7 +417,11 @@ export function SelectedWorkSection({
                       project={project}
                       projectIndex={projectIndex}
                       orderLabel={orderFormatter.format(projectIndex + 1)}
-                      yearLabel={yearFormatter.format(project.year)}
+                      yearLabel={
+                        project.year
+                          ? yearFormatter.format(project.year)
+                          : t("common:labels.notSpecified")
+                      }
                       state={state}
                     />
                   ))

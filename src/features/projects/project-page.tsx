@@ -115,9 +115,9 @@ export function ProjectPage() {
   const project = getLocalizedProject(sourceProject, locale)
   const navigation = getLocalizedProjectNavigation(project.slug, locale)
   const portfolio = getLocalizedPortfolio(locale)
-  const formattedYear = new Intl.NumberFormat(locale, {
-    useGrouping: false,
-  }).format(project.year)
+  const formattedYear = project.year
+    ? new Intl.NumberFormat(locale, { useGrouping: false }).format(project.year)
+    : t("common:labels.notSpecified")
   const formattedOrder = new Intl.NumberFormat(locale, {
     minimumIntegerDigits: 2,
     useGrouping: false,
