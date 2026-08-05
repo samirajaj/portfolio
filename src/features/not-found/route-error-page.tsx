@@ -7,7 +7,6 @@ import { DirectionProvider } from "radix-ui/direction"
 import { DocumentMeta } from "@/components/common/document-meta"
 import { PageContainer } from "@/components/common/page-container"
 import { Button } from "@/components/ui/button"
-import { portfolioMedia } from "@/content/portfolio-media"
 import { getLocalizedPortfolio } from "@/content/portfolio.selectors"
 import { i18n } from "@/lib/i18n/i18n"
 import { SiteLayout } from "@/layouts/site-layout"
@@ -41,20 +40,16 @@ export function RouteErrorPage() {
     <DirectionProvider dir={direction}>
       <SiteLayout locale={locale} direction={direction}>
         <DocumentMeta
-          title={`${t("site:error.title")} — ${portfolio.seo.siteName}`}
+          title={`${t("site:error.title")} — ${portfolio.personal.fullName}`}
           description={t("site:error.description")}
           locale={locale}
           siteUrl={portfolio.seo.siteUrl}
-          image={portfolioMedia.brand.socialPreview.src}
+          image={portfolio.seo.previewImage.src}
           noIndex
         />
-        <main
-          id="main-content"
-          tabIndex={-1}
-          className="border-b border-border pt-28 sm:pt-36"
-        >
-          <PageContainer className="flex min-h-[70svh] max-w-4xl flex-col items-start justify-center gap-7 py-16 lg:py-24">
-            <p className="eyebrow text-signal">{t("site:error.eyebrow")}</p>
+        <main id="main-content" tabIndex={-1}>
+          <PageContainer className="flex min-h-[75svh] max-w-4xl flex-col items-start justify-center gap-7 py-16 lg:py-24">
+            <p className="eyebrow text-primary">{t("site:error.eyebrow")}</p>
             <div className="flex flex-col gap-5">
               <h1 className="section-title">{t("site:error.title")}</h1>
               <p className="prose-measure">{t("site:error.description")}</p>
@@ -63,18 +58,12 @@ export function RouteErrorPage() {
               <Button
                 type="button"
                 size="lg"
-                className="min-h-11 px-5"
                 onClick={() => window.location.reload()}
               >
                 <RefreshCwIcon data-icon="inline-start" aria-hidden="true" />
                 {t("common:actions.reloadPage")}
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="min-h-11 px-5"
-              >
+              <Button asChild size="lg" variant="outline">
                 <Link to={`/${locale}`}>{t("common:actions.backHome")}</Link>
               </Button>
             </div>

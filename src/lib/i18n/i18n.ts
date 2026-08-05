@@ -9,7 +9,7 @@ import {
   type SupportedLanguage,
 } from "@/routes/locale-routing"
 
-export const translationNamespaces = ["common", "site", "contact"] as const
+export const translationNamespaces = ["common", "site"] as const
 
 type TranslationNamespace = (typeof translationNamespaces)[number]
 

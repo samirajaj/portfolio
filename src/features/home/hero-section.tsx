@@ -1,344 +1,195 @@
-import { useRef } from "react"
 import {
   ArrowDownIcon,
   BriefcaseBusinessIcon,
   DownloadIcon,
   GitForkIcon,
   MailIcon,
-  PhoneIcon,
+  MapPinIcon,
 } from "lucide-react"
+import { useRef } from "react"
 import { useTranslation } from "react-i18next"
-import { Link } from "react-router"
 
-import { ContactLink } from "@/components/common/contact-link"
-import { PageContainer } from "@/components/common/page-container"
+import { CursorAurora } from "@/components/motion/cursor-aurora"
 import { Button } from "@/components/ui/button"
-import { SystemTraceVisual } from "@/components/visual/system-trace-visual"
-import type {
-  LocalizedPortfolioData,
-  MediaAsset,
-  SupportedLanguage,
-} from "@/content/portfolio.types"
-import { getEmailHref, getPhoneHref } from "@/lib/contact-links"
+import type { LocalizedPortfolioData } from "@/content/portfolio.types"
 import { gsap, useGSAP } from "@/lib/gsap/gsap"
-import { motionQueries } from "@/lib/gsap/motion-preferences"
-import { motionTokens } from "@/lib/gsap/motion-tokens"
 
-type HeroSectionProps = {
-  locale: SupportedLanguage
-  direction: "ltr" | "rtl"
-  identity: LocalizedPortfolioData["identity"]
-  hero: LocalizedPortfolioData["hero"]
-  contact: LocalizedPortfolioData["contact"]
-  cv: LocalizedPortfolioData["cv"]
-  avatar: MediaAsset | null
-}
+type HeroSectionProps = Pick<
+  LocalizedPortfolioData,
+  "personal" | "availability" | "socialLinks" | "resume"
+>
 
 export function HeroSection({
-  locale,
-  direction,
-  identity,
-  hero,
-  contact,
-  cv,
-  avatar,
+  personal,
+  availability,
+  socialLinks,
+  resume,
 }: HeroSectionProps) {
-  const { t } = useTranslation(["common", "site"])
-  const rootRef = useRef<HTMLElement>(null)
-  const linkedin = contact.links.find((link) => link.id === "linkedin")
-  const github = contact.links.find((link) => link.id === "github")
+  const { t } = useTranslation(["site", "common"])
+  const root = useRef<HTMLElement>(null)
+  const portrait = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
       const media = gsap.matchMedia()
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        const timeline = gsap.timeline({ defaults: { ease: "power3.out" } })
+        timeline
+          .from("[data-hero-line]", {
+            yPercent: 105,
+            duration: 0.72,
+            stagger: 0.08,
+          })
+          .from(
+            "[data-hero-detail]",
+            { autoAlpha: 0, y: 16, duration: 0.45, stagger: 0.05 },
+            "-=0.34"
+          )
+          .from(
+            portrait.current,
+            { autoAlpha: 0, scale: 0.96, duration: 0.72 },
+            "-=0.62"
+          )
 
-      media.add(
-        {
-          reduceMotion: motionQueries.reduced,
-          fullMotion: motionQueries.full,
-        },
-        (context) => {
-          const { reduceMotion } = context.conditions as Record<string, boolean>
-
-          if (reduceMotion) {
-            gsap.set("[data-hero-reveal]", { autoAlpha: 1, y: 0 })
-            return
-          }
-
-          gsap
-            .timeline({
-              defaults: {
-                duration: motionTokens.duration.reveal,
-                ease: motionTokens.ease.enter,
-              },
-            })
-            .from("[data-hero-eyebrow]", {
-              autoAlpha: 0,
-              y: motionTokens.distance.small,
-            })
-            .from(
-              "[data-hero-title]",
-              { autoAlpha: 0, y: motionTokens.distance.medium },
-              "-=0.5"
-            )
-            .from(
-              "[data-hero-support]",
-              {
-                autoAlpha: 0,
-                y: motionTokens.distance.small,
-                stagger: motionTokens.stagger.tight,
-              },
-              "-=0.48"
-            )
-            .from(
-              "[data-hero-visual]",
-              {
-                autoAlpha: 0,
-                y: motionTokens.distance.medium,
-                scale: 0.985,
-              },
-              0.18
-            )
-            .from(
-              "[data-contact-signal]",
-              {
-                autoAlpha: 0,
-                y: motionTokens.distance.small,
-                stagger: motionTokens.stagger.tight,
-              },
-              "-=0.35"
-            )
+        if (portrait.current) {
+          gsap.to(portrait.current, {
+            yPercent: 5,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          })
         }
-      )
-
+      })
       return () => media.revert()
     },
-    { scope: rootRef }
+    { scope: root }
   )
 
   return (
     <section
-      ref={rootRef}
-      className="relative overflow-hidden pt-[calc(var(--header-height)+clamp(3rem,7vw,7rem))]"
+      ref={root}
+      id="hero"
+      className="hero-section section-shell min-h-[calc(100svh-3.5rem)]"
     >
-      <div
-        className="technical-grid absolute inset-x-0 top-0 -z-10 h-[72%] opacity-45"
-        aria-hidden="true"
-      />
-      <PageContainer>
-        <div className="grid items-start gap-12 pb-14 lg:grid-cols-12 lg:gap-8 lg:pb-20">
-          <div
-            data-hero-reveal
-            className="flex min-w-0 flex-col gap-7 lg:col-span-7 lg:pt-8"
-          >
+      <CursorAurora />
+      <div className="page-container relative z-10 grid items-center gap-12 lg:grid-cols-12">
+        <div
+          data-aurora-protect
+          className="flex flex-col items-start gap-7 lg:col-span-7"
+        >
+          {availability ? (
             <div
-              data-hero-eyebrow
-              className="flex flex-wrap items-center gap-x-4 gap-y-2"
+              data-hero-detail
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/75 px-3 py-2 text-sm backdrop-blur"
             >
-              <span className="eyebrow text-signal">{hero.eyebrow}</span>
-              <span className="hidden h-px w-12 bg-border sm:block" />
-              <span className="text-sm text-muted-foreground">
-                {identity.name}
-              </span>
+              <span
+                className="size-2 rounded-full bg-primary"
+                aria-hidden="true"
+              />
+              <span>{availability.label}</span>
             </div>
-
-            <h1 data-hero-title className="hero-display">
-              {hero.headline}
-            </h1>
-
-            <p data-hero-support className="prose-measure max-w-[58ch]">
-              {hero.description}
+          ) : null}
+          <div className="flex flex-col gap-3">
+            <p data-hero-detail className="eyebrow text-primary">
+              {personal.fullName}
             </p>
-
-            <div
-              data-hero-support
-              className="flex flex-wrap items-center gap-3"
-            >
-              <span className="relative flex size-2" aria-hidden="true">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-response opacity-55 motion-reduce:animate-none" />
-                <span className="relative inline-flex size-2 rounded-full bg-response" />
+            <h1 className="hero-display">
+              <span className="block overflow-hidden">
+                <span data-hero-line className="block">
+                  {personal.marketingStatement}
+                </span>
               </span>
-              <span className="text-sm font-medium">{hero.availability}</span>
-            </div>
-
-            <div data-hero-support className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="min-h-12 px-5">
-                <Link to={`/${locale}#work`}>
-                  {t("actions.exploreProjects")}
-                  <ArrowDownIcon data-icon="inline-end" aria-hidden="true" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="min-h-12 px-5"
+            </h1>
+          </div>
+          <p
+            data-hero-detail
+            className="max-w-2xl text-lg leading-8 text-muted-foreground"
+          >
+            {personal.shortIntroduction}
+          </p>
+          <div
+            data-hero-detail
+            className="flex items-center gap-2 text-sm text-muted-foreground"
+          >
+            <MapPinIcon aria-hidden="true" />
+            <span>{personal.location}</span>
+          </div>
+          <div data-hero-detail className="flex flex-wrap gap-2">
+            <Button asChild size="lg">
+              <a
+                href={resume.file}
+                download={resume.downloadName}
+                data-aurora-attract
               >
-                <a href={getEmailHref(contact.email)}>
-                  <MailIcon data-icon="inline-start" aria-hidden="true" />
-                  {t("actions.sendEmail")}
-                </a>
-              </Button>
-              {cv.available && cv.filePath && cv.fileName ? (
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="min-h-12 px-5"
-                >
-                  <a href={cv.filePath} download={cv.fileName}>
-                    <DownloadIcon data-icon="inline-start" aria-hidden="true" />
-                    {t("actions.downloadCv")}
-                  </a>
-                </Button>
-              ) : null}
-              {linkedin ? (
-                <Button
-                  asChild
-                  size="icon-lg"
-                  variant="ghost"
-                  className="size-12"
-                >
-                  <a
-                    href={linkedin.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label={t("actions.openLinkedIn")}
-                  >
-                    <BriefcaseBusinessIcon aria-hidden="true" />
-                  </a>
-                </Button>
-              ) : null}
-              {github ? (
-                <Button
-                  asChild
-                  size="icon-lg"
-                  variant="ghost"
-                  className="size-12"
-                >
-                  <a
-                    href={github.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label={t("actions.openGitHub")}
-                  >
-                    <GitForkIcon aria-hidden="true" />
-                  </a>
-                </Button>
-              ) : null}
-            </div>
-
-            <div
-              data-hero-support
-              className="grid gap-6 border-t border-border pt-6 sm:grid-cols-2"
-            >
-              <div className="flex flex-col gap-3">
-                <p className="eyebrow text-muted-foreground">
-                  {t("site:hero.stackLabel")}
-                </p>
-                <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-                  {hero.stackHighlights.map((technology) => (
-                    <li key={technology}>
-                      <bdi dir="ltr">{technology}</bdi>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-                {hero.proofPoints.map((point) => (
-                  <li key={point} className="flex gap-2">
-                    <span className="mt-[0.55em] size-1 shrink-0 rounded-full bg-response" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div data-hero-visual className="min-w-0 lg:col-span-5 lg:pt-2">
-            <div className="flex flex-col gap-5">
-              {avatar ? (
-                <div className="project-stage aspect-square overflow-hidden">
-                  <img
-                    src={avatar.src}
-                    width={avatar.width}
-                    height={avatar.height}
-                    alt={identity.avatarAlt}
-                    fetchPriority="high"
-                    decoding="async"
-                    className="size-full object-cover"
-                  />
-                </div>
-              ) : null}
-              <SystemTraceVisual
-                direction={direction}
-                label={t("site:hero.systemLabel")}
-                description={t("site:hero.systemDescription")}
-                flow={{
-                  request: t("labels.request"),
-                  response: t("labels.response"),
-                  interface: t("site:hero.flow.interface"),
-                  react: t("site:hero.flow.react"),
-                  api: t("site:hero.flow.api"),
-                  auth: t("site:hero.flow.auth"),
-                  logic: t("site:hero.flow.logic"),
-                  database: t("site:hero.flow.database"),
-                  verified: t("site:hero.flow.verified"),
-                }}
-              />
-            </div>
+                <DownloadIcon data-icon="inline-start" aria-hidden="true" />
+                {t("common:actions.downloadCv")}
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <a href={socialLinks.email.href} data-aurora-attract>
+                <MailIcon data-icon="inline-start" aria-hidden="true" />
+                {t("common:actions.contactMe")}
+              </a>
+            </Button>
+            <Button asChild variant="ghost" size="icon-lg">
+              <a
+                href={socialLinks.github.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={socialLinks.github.ariaLabel}
+                data-aurora-attract
+              >
+                <GitForkIcon aria-hidden="true" />
+              </a>
+            </Button>
+            <Button asChild variant="ghost" size="icon-lg">
+              <a
+                href={socialLinks.linkedin.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={socialLinks.linkedin.ariaLabel}
+                data-aurora-attract
+              >
+                <BriefcaseBusinessIcon aria-hidden="true" />
+              </a>
+            </Button>
           </div>
         </div>
 
-        <div className="ledger-grid grid grid-cols-2 border-s border-t border-border lg:grid-cols-4">
-          <div data-contact-signal>
-            <ContactLink
-              href={getEmailHref(contact.email)}
-              label={t("labels.email")}
-              value={contact.email}
-              accessibleLabel={t("actions.sendEmail")}
-              icon={MailIcon}
-              variant="ledger"
+        <div className="lg:col-span-5">
+          <div
+            ref={portrait}
+            data-aurora-attract
+            className="portrait-frame relative mx-auto max-w-md"
+          >
+            <div className="absolute -inset-3 -z-10 rounded-[2rem] border border-primary/30" />
+            <img
+              src={personal.avatar.src}
+              alt={personal.avatar.alt}
+              width={personal.avatar.width}
+              height={personal.avatar.height}
+              fetchPriority="high"
+              className="aspect-square w-full rounded-[1.5rem] object-cover"
             />
-          </div>
-          {linkedin ? (
-            <div data-contact-signal>
-              <ContactLink
-                href={linkedin.url}
-                label={t("labels.linkedin")}
-                value={linkedin.url}
-                accessibleLabel={t("actions.openLinkedIn")}
-                icon={BriefcaseBusinessIcon}
-                variant="ledger"
-                external
-              />
+            <div className="absolute inset-x-5 bottom-5 rounded-xl border border-white/20 bg-background/80 p-4 backdrop-blur">
+              <p className="text-sm font-semibold">
+                {personal.professionalTitle}
+              </p>
             </div>
-          ) : null}
-          {github ? (
-            <div data-contact-signal>
-              <ContactLink
-                href={github.url}
-                label={t("labels.github")}
-                value={github.url}
-                accessibleLabel={t("actions.openGitHub")}
-                icon={GitForkIcon}
-                variant="ledger"
-                external
-              />
-            </div>
-          ) : null}
-          <div data-contact-signal>
-            <ContactLink
-              href={getPhoneHref(contact.phone)}
-              label={t("labels.phone")}
-              value={contact.phone}
-              accessibleLabel={t("actions.callPhone")}
-              icon={PhoneIcon}
-              variant="ledger"
-            />
           </div>
         </div>
-      </PageContainer>
+      </div>
+      <a
+        href="#experience"
+        className="absolute start-1/2 bottom-6 z-10 -translate-x-1/2 text-muted-foreground transition-colors hover:text-foreground"
+        aria-label={t("common:actions.explorePortfolio")}
+      >
+        <ArrowDownIcon aria-hidden="true" />
+      </a>
     </section>
   )
 }

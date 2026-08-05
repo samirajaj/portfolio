@@ -30,11 +30,6 @@ export const router = createBrowserRouter([
             Component: HomePage,
           },
           {
-            id: "project",
-            path: "projects/:slug",
-            lazy: () => import("@/features/projects/project.route"),
-          },
-          {
             id: "not-found",
             path: "*",
             Component: NotFoundPage,

@@ -1,108 +1,66 @@
 {
   "nav": {
-    "work": "Work",
-    "expertise": "Expertise",
-    "approach": "Approach",
-    "about": "About",
+    "hero": "Home",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
     "contact": "Contact"
   },
-  "header": {
-    "mobileTitle": "Navigation",
-    "mobileDescription": "Move through the portfolio or choose a contact method."
-  },
-  "hero": {
-    "stackLabel": "Primary stack",
-    "systemLabel": "A full-stack request, traced",
-    "systemDescription": "A request moves from the interface through validation, application logic, and persistence before a verified response updates the product.",
-    "flow": {
-      "interface": "Interface",
-      "react": "React",
-      "api": "API",
-      "auth": "Auth",
-      "logic": "Logic",
-      "database": "Database",
-      "verified": "Verified response"
-    }
+  "sidebar": {
+    "title": "Portfolio navigation",
+    "description": "Move between Samir Ajaj's portfolio sections.",
+    "portfolio": "Personal portfolio",
+    "navigation": "Navigation"
   },
   "sections": {
-    "work": {
-      "index": "01",
-      "eyebrow": "Selected work",
-      "title": "Products, systems, and the decisions between them.",
-      "description": "Three public projects showing product interface work, full-stack boundaries, authorization, data modeling, and reusable backend design."
+    "capabilities": {
+      "title": "Core capabilities"
     },
-    "expertise": {
-      "index": "02",
-      "eyebrow": "Capabilities",
-      "title": "Engineering across the whole product boundary.",
-      "description": "Capabilities are grouped by the problems they solve, with direct project evidence instead of percentages."
+    "experience": {
+      "eyebrow": "Professional experience",
+      "title": "Product work shaped by real team delivery.",
+      "description": "Frontend ownership, API integration, and close collaboration across product, design, backend, and quality assurance.",
+      "workflow": "Delivery workflow"
     },
-    "services": {
-      "eyebrow": "Services",
-      "title": "Practical software work, described in product terms."
+    "education": {
+      "eyebrow": "Education",
+      "title": "Software engineering foundations in active progress.",
+      "description": "Formal study across engineering, analysis, databases, algorithms, and application development.",
+      "score": "Graduation project score: {{score}}"
     },
-    "approach": {
-      "index": "03",
-      "eyebrow": "Engineering approach",
-      "title": "Make the problem legible before making the system large.",
-      "description": "A compact process for turning an ambiguous request into a maintainable product boundary."
-    },
-    "about": {
-      "index": "04",
-      "eyebrow": "About",
-      "title": "Structure, clarity, and software that can keep changing.",
-      "education": "Education",
-      "experience": "Experience",
-      "focus": "Current focus"
+    "projects": {
+      "eyebrow": "Projects journey",
+      "title": "Selected systems connected by growing technical range.",
+      "description": "Six projects across .NET, Next.js, product frontend, databases, security, localization, and team delivery. Scroll to follow the journey."
     },
     "contact": {
-      "index": "05",
-      "eyebrow": "Start a conversation"
+      "eyebrow": "Start a conversation",
+      "title": "Have a product to build or a role to discuss?",
+      "description": "Reach me directly to discuss full-stack product work, application architecture, or a development opportunity."
     }
   },
-  "projectStory": {
-    "interface": "Interface",
-    "architecture": "Architecture",
-    "decision": "Decision record",
-    "evidence": "Evidence",
-    "chapter": "Project chapter {{number}}"
+  "projects": {
+    "contribution": "Contribution"
   },
-  "caseStudy": {
-    "back": "All selected work",
-    "overview": "Overview",
-    "context": "Context",
-    "problem": "Problem",
-    "scope": "Scope",
-    "interface": "Interface design",
-    "responsive": "Responsive behavior",
-    "architecture": "Architecture",
-    "decisions": "Engineering decisions",
-    "decision": "Decision",
-    "decisionContext": "Context",
-    "alternatives": "Alternatives considered",
-    "selectedApproach": "Selected approach",
-    "tradeoff": "Trade-off",
-    "challenges": "Challenges",
-    "delivered": "Delivered capabilities",
-    "gallery": "Technical gallery",
-    "galleryNote": "Temporary project imagery is shown until final screenshots and diagrams are available.",
-    "navigation": "Project navigation",
-    "discuss": "Discuss a similar problem"
+  "dates": {
+    "present": "Present"
+  },
+  "workMode": {
+    "remote": "Remote",
+    "hybrid": "Hybrid",
+    "onsite": "On-site"
   },
   "notFound": {
     "eyebrow": "404 / Route not found",
     "title": "This route does not resolve to a portfolio page.",
-    "description": "The address may be incomplete, or the project is no longer available at this path.",
-    "projectTitle": "That project is not in the public case-study index.",
-    "projectDescription": "Return to selected work to choose one of the documented projects."
+    "description": "The address may be incomplete or no longer available."
   },
   "error": {
     "eyebrow": "Application error",
     "title": "This page could not finish loading.",
-    "description": "Reload the page to try again. If the problem continues, use a direct contact method in the footer."
+    "description": "Reload the page to try again."
   },
   "footer": {
-    "copyright": "© {{year}} Samir Ajaj",
-    "note": "Designed as a request / response ledger."
+    "copyright": "© {{year}} Samir Ajaj. All rights reserved."
   }
 }
