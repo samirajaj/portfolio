@@ -112,12 +112,13 @@ export function useDigitalOrbController({
         return
       }
 
-      const desktopPointer = window.matchMedia(
-        "(min-width: 64rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
+      const pointerCapable = window.matchMedia(
+        "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
       )
+      const enhancedJourney = window.matchMedia("(min-width: 64rem)").matches
       const routeLength = route.getTotalLength()
 
-      if (!desktopPointer.matches) {
+      if (!pointerCapable.matches) {
         gsap.set(orb, { autoAlpha: 0 })
         gsap.set(travelledRoute, {
           strokeDasharray: routeLength,
@@ -462,6 +463,15 @@ export function useDigitalOrbController({
         pointer.y = event.clientY
         pointer.time = now
 
+        const target = event.target
+        const isInteractive =
+          target instanceof Element &&
+          target.closest("a, button, [role='button']") !== null
+        const nextInteractive = String(isInteractive)
+        if (orb.dataset.interactive !== nextInteractive) {
+          orb.dataset.interactive = nextInteractive
+        }
+
         if (
           mode === "burst" &&
           burstReady &&
@@ -498,31 +508,38 @@ export function useDigitalOrbController({
       hideCaptureLine()
       gsap.set(travelledRoute, {
         strokeDasharray: routeLength,
-        strokeDashoffset: routeLength,
+        strokeDashoffset: enhancedJourney ? routeLength : 0,
       })
+      if (!enhancedJourney) {
+        cards.current.forEach((card) => {
+          if (card) setCardPhase(card, "completed", true)
+        })
+      }
       refreshPathMatrix()
 
-      const projectTrigger = ScrollTrigger.create({
-        id: "digital-orb-project-journey",
-        trigger: journeyElement,
-        start: "top 72%",
-        end: "bottom 58%",
-        invalidateOnRefresh: true,
-        onEnter: capture,
-        onEnterBack: capture,
-        onLeaveBack: releaseToPointer,
-        onLeave: (self) => {
-          if (self.direction > 0 && self.progress >= 0.995) burst()
-        },
-        onUpdate: (self) => {
-          renderProjectProgress(self.progress)
-          if (self.isActive && mode === "pointer") capture()
-        },
-        onRefresh: () => {
-          refreshPathMatrix()
-          renderProjectProgress(normalizedProgress)
-        },
-      })
+      const projectTrigger = enhancedJourney
+        ? ScrollTrigger.create({
+            id: "digital-orb-project-journey",
+            trigger: journeyElement,
+            start: "top 72%",
+            end: "bottom 58%",
+            invalidateOnRefresh: true,
+            onEnter: capture,
+            onEnterBack: capture,
+            onLeaveBack: releaseToPointer,
+            onLeave: (self) => {
+              if (self.direction > 0 && self.progress >= 0.995) burst()
+            },
+            onUpdate: (self) => {
+              renderProjectProgress(self.progress)
+              if (self.isActive && mode === "pointer") capture()
+            },
+            onRefresh: () => {
+              refreshPathMatrix()
+              renderProjectProgress(normalizedProgress)
+            },
+          })
+        : null
 
       window.addEventListener("pointermove", onPointerMove, { passive: true })
 
@@ -531,7 +548,7 @@ export function useDigitalOrbController({
         window.removeEventListener("pointermove", onPointerMove)
         captureTimeline?.kill()
         stateTimeline?.kill()
-        projectTrigger.kill()
+        projectTrigger?.kill()
         gsap.killTweensOf([orb, orbCore, line, ...fragmentElements])
       }
     },

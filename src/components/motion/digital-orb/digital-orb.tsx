@@ -30,6 +30,7 @@ export function DigitalOrb({ elements }: DigitalOrbProps) {
         className="digital-orb"
         data-mode="pointer"
         data-moving="false"
+        data-interactive="false"
         aria-hidden="true"
       >
         <span className="digital-orb-trail">

@@ -21,6 +21,14 @@ export const motionTokens = {
     system: "power1.inOut",
   },
   pointerRotation: 2.5,
+  avatar: {
+    floatDuration: 3.8,
+    floatDistance: 9,
+    impulseDistance: 10,
+    impulseRotation: 1.25,
+    depthDistance: 3.5,
+    depthRotation: 0.55,
+  },
   orb: {
     followDuration: 0.2,
     captureDuration: 0.42,

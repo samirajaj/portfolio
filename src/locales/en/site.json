@@ -6,6 +6,11 @@
     "projects": "Projects",
     "contact": "Contact"
   },
+  "header": {
+    "navigation": "Primary navigation",
+    "mobileTitle": "Portfolio menu",
+    "mobileDescription": "Navigate Samir Ajaj's portfolio and adjust language or theme."
+  },
   "sidebar": {
     "title": "Portfolio navigation",
     "description": "Move between Samir Ajaj's portfolio sections.",

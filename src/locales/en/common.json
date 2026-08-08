@@ -10,6 +10,8 @@
     "backToTop": "Back to top",
     "reloadPage": "Reload page",
     "toggleSidebar": "Toggle sidebar",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
     "switchLanguage": "Switch to {{language}}",
     "switchTheme": "Switch theme to {{theme}}"
   },

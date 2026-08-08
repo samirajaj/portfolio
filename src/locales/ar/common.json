@@ -10,6 +10,8 @@
     "backToTop": "العودة إلى الأعلى",
     "reloadPage": "إعادة تحميل الصفحة",
     "toggleSidebar": "فتح أو إغلاق الشريط الجانبي",
+    "openMenu": "فتح قائمة التنقل",
+    "closeMenu": "إغلاق قائمة التنقل",
     "switchLanguage": "التبديل إلى {{language}}",
     "switchTheme": "تغيير السمة إلى {{theme}}"
   },
