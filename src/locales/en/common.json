@@ -1,49 +1,27 @@
 {
   "actions": {
-    "exploreProjects": "Explore projects",
-    "viewCaseStudy": "Read case study",
-    "viewRepository": "View repository",
-    "viewLiveSite": "View live site",
     "sendEmail": "Send email",
-    "callPhone": "Call by phone",
-    "openLinkedIn": "Open LinkedIn",
-    "openGitHub": "Open GitHub",
+    "contactMe": "Contact me",
+    "downloadCv": "Download CV",
+    "explorePortfolio": "Explore the portfolio",
+    "liveProject": "Live project",
+    "sourceCode": "Source code",
     "backHome": "Back to home",
     "backToTop": "Back to top",
+    "reloadPage": "Reload page",
+    "toggleSidebar": "Toggle sidebar",
     "openMenu": "Open navigation menu",
     "closeMenu": "Close navigation menu",
     "switchLanguage": "Switch to {{language}}",
-    "reloadPage": "Reload page",
-    "previousProject": "Previous project",
-    "nextProject": "Next project",
-    "switchTheme": "Switch theme to {{theme}}",
-    "downloadCv": "Download CV"
-  },
-  "status": {
-    "completed": "Completed",
-    "in-progress": "In progress",
-    "concept": "Concept"
+    "switchTheme": "Switch theme to {{theme}}"
   },
   "labels": {
     "email": "Email",
     "phone": "Phone",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "location": "Location",
-    "availability": "Availability",
-    "role": "Role",
-    "year": "Year",
-    "status": "Status",
-    "technologies": "Technologies",
-    "capabilities": "Capabilities",
-    "current": "Present",
-    "project": "Project",
-    "language": "Language",
     "english": "English",
-    "arabic": "العربية",
-    "request": "Request",
-    "response": "Response",
-    "notSpecified": "Not specified"
+    "arabic": "العربية"
   },
   "themes": {
     "system": "System theme",
@@ -51,10 +29,6 @@
     "dark": "Dark theme"
   },
   "a11y": {
-    "skipToContent": "Skip to main content",
-    "externalLink": "Opens in a new tab",
-    "currentLanguage": "Current language: {{language}}",
-    "projectIllustration": "Technical system map for {{project}}",
-    "decorative": "Decorative"
+    "skipToContent": "Skip to main content"
   }
 }
