@@ -11,7 +11,8 @@ type HeroAvatarProps = {
 export function HeroAvatar({ avatar }: HeroAvatarProps) {
   const stage = useRef<HTMLDivElement>(null)
   const field = useRef<HTMLDivElement>(null)
-  const nodesLayer = useRef<HTMLDivElement>(null)
+  const backgroundNodesLayer = useRef<HTMLDivElement>(null)
+  const foregroundNodesLayer = useRef<HTMLDivElement>(null)
   const hitArea = useRef<HTMLDivElement>(null)
   const floatingPortrait = useRef<HTMLDivElement>(null)
   const portraitDepth = useRef<HTMLDivElement>(null)
@@ -22,7 +23,8 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
     (_, contextSafe) => {
       const stageElement = stage.current
       const fieldElement = field.current
-      const nodesElement = nodesLayer.current
+      const backgroundNodesElement = backgroundNodesLayer.current
+      const foregroundNodesElement = foregroundNodesLayer.current
       const hitAreaElement = hitArea.current
       const floatElement = floatingPortrait.current
       const depthElement = portraitDepth.current
@@ -32,7 +34,8 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
       if (
         !stageElement ||
         !fieldElement ||
-        !nodesElement ||
+        !backgroundNodesElement ||
+        !foregroundNodesElement ||
         !hitAreaElement ||
         !floatElement ||
         !depthElement ||
@@ -57,15 +60,34 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
         {
           motionAllowed: "(prefers-reduced-motion: no-preference)",
           finePointer: "(hover: hover) and (pointer: fine)",
+          desktop: "(min-width: 48rem)",
         },
         (mediaContext) => {
-          const { motionAllowed, finePointer } = mediaContext.conditions as {
-            motionAllowed: boolean
-            finePointer: boolean
-          }
+          const { motionAllowed, finePointer, desktop } =
+            mediaContext.conditions as {
+              motionAllowed: boolean
+              finePointer: boolean
+              desktop: boolean
+            }
 
           gsap.set(stageElement, { autoAlpha: 1 })
           if (!motionAllowed) return
+
+          const floatScale = desktop ? 1 : 0.72
+          const floatDistance = motionTokens.avatar.floatDistance * floatScale
+          const driftDistance = motionTokens.avatar.driftDistance * floatScale
+
+          gsap.set(floatElement, {
+            x: -driftDistance * 0.45,
+            y: floatDistance * 0.3,
+            rotation: -0.28,
+          })
+          gsap.set(shadowElement, {
+            x: -driftDistance * 0.2,
+            scaleX: 0.92,
+            scaleY: 1.05,
+            autoAlpha: 0.68,
+          })
 
           const floatTimeline = gsap
             .timeline({
@@ -76,20 +98,14 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
               },
             })
             .to(floatElement, {
-              x: motionTokens.avatar.driftDistance,
-              y: -motionTokens.avatar.floatDistance,
-              rotation: 0.45,
+              x: driftDistance,
+              y: -floatDistance,
+              rotation: 0.48,
             })
             .to(floatElement, {
-              x: -motionTokens.avatar.driftDistance * 0.65,
-              y: -motionTokens.avatar.floatDistance * 0.35,
-              rotation: -0.32,
-              duration: motionTokens.avatar.floatSegmentDuration * 0.88,
-            })
-            .to(floatElement, {
-              x: 0,
-              y: 0,
-              rotation: 0,
+              x: -driftDistance * 0.45,
+              y: floatDistance * 0.3,
+              rotation: -0.28,
               duration: motionTokens.avatar.floatSegmentDuration * 1.08,
             })
           const shadowTimeline = gsap
@@ -101,23 +117,16 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
               },
             })
             .to(shadowElement, {
-              x: motionTokens.avatar.driftDistance * 0.45,
-              scaleX: 1.16,
-              scaleY: 0.86,
-              autoAlpha: 0.42,
+              x: driftDistance * 0.45,
+              scaleX: 1.25,
+              scaleY: 0.78,
+              autoAlpha: 0.34,
             })
             .to(shadowElement, {
-              x: -motionTokens.avatar.driftDistance * 0.25,
-              scaleX: 1.06,
-              scaleY: 0.94,
-              autoAlpha: 0.52,
-              duration: motionTokens.avatar.floatSegmentDuration * 0.88,
-            })
-            .to(shadowElement, {
-              x: 0,
-              scaleX: 1,
-              scaleY: 1,
-              autoAlpha: 0.64,
+              x: -driftDistance * 0.2,
+              scaleX: 0.92,
+              scaleY: 1.05,
+              autoAlpha: 0.68,
               duration: motionTokens.avatar.floatSegmentDuration * 1.08,
             })
           const nodeTweens = nodes.map((node, index) =>
@@ -161,16 +170,43 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
             duration: 0.8,
             ease: "power2.out",
           })
-          const nodesXTo = gsap.quickTo(nodesElement, "x", {
+          const backgroundNodesXTo = gsap.quickTo(backgroundNodesElement, "x", {
             duration: 0.72,
             ease: "power2.out",
           })
-          const nodesYTo = gsap.quickTo(nodesElement, "y", {
+          const backgroundNodesYTo = gsap.quickTo(backgroundNodesElement, "y", {
             duration: 0.72,
+            ease: "power2.out",
+          })
+          const foregroundNodesXTo = gsap.quickTo(foregroundNodesElement, "x", {
+            duration: 0.62,
+            ease: "power3.out",
+          })
+          const foregroundNodesYTo = gsap.quickTo(foregroundNodesElement, "y", {
+            duration: 0.62,
+            ease: "power3.out",
+          })
+          const shadowXTo = gsap.quickTo(shadowResponseElement, "x", {
+            duration: 0.68,
             ease: "power2.out",
           })
           let impulseTimeline: gsap.core.Timeline | null = null
           let isImpulsing = false
+          const pointerInfluence = { x: 0, y: 0 }
+
+          const applyPointerInfluence = () => {
+            const { x, y } = pointerInfluence
+            depthXTo(x * -motionTokens.avatar.depthDistance)
+            depthYTo(y * -motionTokens.avatar.depthDistance * 0.78)
+            rotationTo(x * motionTokens.avatar.depthRotation)
+            fieldXTo(x * 2)
+            fieldYTo(y * 1.5)
+            backgroundNodesXTo(x * 3.5)
+            backgroundNodesYTo(y * 2.5)
+            foregroundNodesXTo(x * -7)
+            foregroundNodesYTo(y * -5)
+            shadowXTo(x * -3)
+          }
 
           const onPointerEnter = contextSafe((event: PointerEvent) => {
             const bounds = hitAreaElement.getBoundingClientRect()
@@ -183,7 +219,12 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
             impulseTimeline?.kill()
             gsap.set(ripples, { autoAlpha: 0, scale: 0.94 })
             impulseTimeline = gsap
-              .timeline({ onComplete: () => (isImpulsing = false) })
+              .timeline({
+                onComplete: () => {
+                  isImpulsing = false
+                  applyPointerInfluence()
+                },
+              })
               .to(
                 depthElement,
                 {
@@ -308,33 +349,28 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
           })
 
           const onPointerMove = (event: PointerEvent) => {
-            if (isImpulsing) return
             const bounds = hitAreaElement.getBoundingClientRect()
-            const x = gsap.utils.clamp(
+            pointerInfluence.x = gsap.utils.clamp(
               -1,
               1,
               (event.clientX - (bounds.left + bounds.width / 2)) /
                 (bounds.width / 2)
             )
-            const y = gsap.utils.clamp(
+            pointerInfluence.y = gsap.utils.clamp(
               -1,
               1,
               (event.clientY - (bounds.top + bounds.height / 2)) /
                 (bounds.height / 2)
             )
 
-            depthXTo(x * motionTokens.avatar.depthDistance)
-            depthYTo(y * motionTokens.avatar.depthDistance * 0.65)
-            rotationTo(x * motionTokens.avatar.depthRotation)
-            fieldXTo(x * -1.5)
-            fieldYTo(y * -1.5)
-            nodesXTo(x * 4)
-            nodesYTo(y * 3)
+            if (!isImpulsing) applyPointerInfluence()
           }
 
           const onPointerLeave = () => {
             impulseTimeline?.kill()
             isImpulsing = false
+            pointerInfluence.x = 0
+            pointerInfluence.y = 0
             gsap.to(ripples, {
               autoAlpha: 0,
               duration: motionTokens.duration.fast,
@@ -343,8 +379,8 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
             depthXTo(0)
             depthYTo(0)
             rotationTo(0)
+            shadowXTo(0)
             gsap.to(shadowResponseElement, {
-              x: 0,
               scaleX: 1,
               duration: 0.35,
               ease: "power2.out",
@@ -352,8 +388,10 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
             })
             fieldXTo(0)
             fieldYTo(0)
-            nodesXTo(0)
-            nodesYTo(0)
+            backgroundNodesXTo(0)
+            backgroundNodesYTo(0)
+            foregroundNodesXTo(0)
+            foregroundNodesYTo(0)
           }
 
           hitAreaElement.addEventListener("pointerenter", onPointerEnter)
@@ -386,9 +424,22 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
         <span />
         <span />
       </div>
-      <div ref={nodesLayer} className="avatar-nodes" aria-hidden="true">
-        {Array.from({ length: 6 }, (_, index) => (
+      <div
+        ref={backgroundNodesLayer}
+        className="avatar-nodes avatar-nodes-back"
+        aria-hidden="true"
+      >
+        {Array.from({ length: 4 }, (_, index) => (
           <span key={index} data-avatar-node data-node={index + 1} />
+        ))}
+      </div>
+      <div
+        ref={foregroundNodesLayer}
+        className="avatar-nodes avatar-nodes-front"
+        aria-hidden="true"
+      >
+        {Array.from({ length: 2 }, (_, index) => (
+          <span key={index} data-avatar-node data-node={index + 5} />
         ))}
       </div>
       <span

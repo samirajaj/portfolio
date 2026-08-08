@@ -34,7 +34,7 @@ export function DigitalOrb({ elements }: DigitalOrbProps) {
         aria-hidden="true"
       >
         <span className="digital-orb-trail">
-          {Array.from({ length: 4 }, (_, index) => (
+          {Array.from({ length: 6 }, (_, index) => (
             <span
               key={index}
               ref={(element) => {

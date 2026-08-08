@@ -575,10 +575,15 @@
   }
   .avatar-nodes {
     position: absolute;
-    z-index: 3;
     inset: 0;
     pointer-events: none;
     will-change: transform;
+  }
+  .avatar-nodes-back {
+    z-index: 1;
+  }
+  .avatar-nodes-front {
+    z-index: 3;
   }
   .avatar-nodes span {
     position: absolute;
@@ -882,11 +887,18 @@
     --orb-trail-3-y: 0px;
     --orb-trail-4-x: 30px;
     --orb-trail-4-y: 0px;
-    --orb-fragment-opacity: 0.12;
+    --orb-trail-5-x: 42px;
+    --orb-trail-5-y: 0px;
+    --orb-trail-6-x: 54px;
+    --orb-trail-6-y: 0px;
+    --orb-fragment-opacity: 0.3;
+    --orb-halo-opacity: 0.28;
     --orb-trail-opacity-1: 0;
     --orb-trail-opacity-2: 0;
     --orb-trail-opacity-3: 0;
     --orb-trail-opacity-4: 0;
+    --orb-trail-opacity-5: 0;
+    --orb-trail-opacity-6: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -900,7 +912,7 @@
   .digital-orb-core {
     position: absolute;
     inset: 50% auto auto 50%;
-    size: 0.68rem;
+    size: 0.94rem;
     transform: translate(-50%, -50%);
     border: 1px solid
       color-mix(in oklch, var(--primary-foreground), transparent 25%);
@@ -908,22 +920,32 @@
     background: radial-gradient(
       circle at 38% 32%,
       var(--primary-foreground),
-      var(--primary) 58%,
-      color-mix(in oklch, var(--primary), transparent 35%)
+      var(--primary) 52%,
+      color-mix(in oklch, var(--primary), var(--foreground) 14%) 100%
     );
     box-shadow:
-      0 0 0.25rem color-mix(in oklch, var(--primary), transparent 15%),
-      0 0 0.7rem color-mix(in oklch, var(--primary), transparent 45%);
+      0 0 0 1px color-mix(in oklch, var(--primary), transparent 26%),
+      0 0 0.38rem color-mix(in oklch, var(--primary), transparent 8%),
+      0 0 1rem color-mix(in oklch, var(--primary), transparent 38%);
     transition: box-shadow var(--motion-fast) ease;
   }
+  .digital-orb-core::before,
   .digital-orb-core::after {
     position: absolute;
-    inset: -0.32rem;
     content: "";
-    border: 1px solid color-mix(in oklch, var(--primary), transparent 42%);
     border-radius: 50%;
-    opacity: 0;
-    transform: scale(0.68);
+    pointer-events: none;
+  }
+  .digital-orb-core::before {
+    inset: 28%;
+    background: var(--primary-foreground);
+    box-shadow: 0 0 0.3rem var(--primary-foreground);
+  }
+  .digital-orb-core::after {
+    inset: -0.32rem;
+    border: 1px solid color-mix(in oklch, var(--primary), transparent 42%);
+    opacity: var(--orb-halo-opacity);
+    transform: scale(0.82);
     transition:
       opacity var(--motion-fast) ease,
       transform var(--motion-fast) ease;
@@ -937,13 +959,10 @@
       0 0 0.3rem color-mix(in oklch, var(--primary), transparent 10%),
       0 0 0.8rem color-mix(in oklch, var(--primary), transparent 48%);
   }
-  .digital-orb[data-interactive="true"][data-moving="true"]
-    .digital-orb-trail
-    span {
-    opacity: 0.08;
-  }
   .digital-orb[data-moving="false"] .digital-orb-core {
-    box-shadow: 0 0 0.35rem color-mix(in oklch, var(--primary), transparent 50%);
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--primary), transparent 45%),
+      0 0 0.55rem color-mix(in oklch, var(--primary), transparent 38%);
   }
   .digital-orb[data-mode="project-checkpoint"] .digital-orb-core {
     box-shadow:
@@ -955,22 +974,22 @@
     position: absolute;
     inset: 50% auto auto 50%;
     display: block;
-    size: 0.2rem;
+    size: 0.24rem;
     border-radius: 1px;
     background: var(--primary);
     opacity: var(--orb-fragment-opacity);
     transform: translate(-50%, -50%);
     box-shadow: 0 0 0.3rem color-mix(in oklch, var(--primary), transparent 35%);
     transition:
-      opacity 140ms linear,
-      transform 100ms linear;
+      opacity 170ms linear,
+      transform 90ms linear;
     will-change: transform, opacity;
   }
   .digital-orb[data-moving="false"] .digital-orb-fragments span {
     opacity: 0;
   }
   .digital-orb[data-moving="false"] .digital-orb-fragments span:first-child {
-    opacity: 0.18;
+    opacity: 0.24;
   }
   .digital-orb-fragments span:nth-child(1) {
     transform: translate(
@@ -1017,6 +1036,10 @@
   .digital-orb-trail span {
     opacity: var(--orb-trail-opacity-1);
   }
+  .digital-orb-trail span:nth-child(odd) {
+    width: 0.36rem;
+    height: 0.16rem;
+  }
   .digital-orb-trail span:nth-child(1) {
     transform: translate(
       calc(-50% - var(--orb-trail-1-x)),
@@ -1043,6 +1066,20 @@
       calc(-50% - var(--orb-trail-4-y))
     );
     opacity: var(--orb-trail-opacity-4);
+  }
+  .digital-orb-trail span:nth-child(5) {
+    transform: translate(
+      calc(-50% - var(--orb-trail-5-x)),
+      calc(-50% - var(--orb-trail-5-y))
+    );
+    opacity: var(--orb-trail-opacity-5);
+  }
+  .digital-orb-trail span:nth-child(6) {
+    transform: translate(
+      calc(-50% - var(--orb-trail-6-x)),
+      calc(-50% - var(--orb-trail-6-y))
+    );
+    opacity: var(--orb-trail-opacity-6);
   }
   .digital-orb-capture-line {
     position: fixed;

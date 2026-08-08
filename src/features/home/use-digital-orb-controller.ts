@@ -31,8 +31,8 @@ type UseDigitalOrbControllerOptions = {
 }
 
 type MotionPoint = { x: number; y: number; angle?: number }
-const orbTrailDistances = [12, 18, 24, 30] as const
-const orbTrailOpacityFactors = [1, 0.7, 0.45, 0.25] as const
+const orbTrailDistances = [15, 24, 34, 45, 57, 70] as const
+const orbTrailOpacityFactors = [1, 0.82, 0.64, 0.46, 0.3, 0.17] as const
 
 function setCardPhase(
   card: HTMLElement,
@@ -157,24 +157,30 @@ export function useDigitalOrbController({
         const unitX = x / magnitude
         const unitY = y / magnitude
         const normalizedSpeed = Math.min(1, speed)
-        const forwardDistance = 10 + normalizedSpeed * 5
+        const forwardDistance = 12 + normalizedSpeed * 8
+        const sideDistance = 7 + normalizedSpeed * 4
         const setLength = (property: string, value: number) => {
           orb.style.setProperty(property, `${value.toFixed(2)}px`)
         }
 
         setLength("--orb-forward-x", unitX * forwardDistance)
         setLength("--orb-forward-y", unitY * forwardDistance)
-        setLength("--orb-side-x", -unitY * 6)
-        setLength("--orb-side-y", unitX * 6)
+        setLength("--orb-side-x", -unitY * sideDistance)
+        setLength("--orb-side-y", unitX * sideDistance)
         orbTrailDistances.forEach((distance, index) => {
-          setLength(`--orb-trail-${index + 1}-x`, unitX * distance)
-          setLength(`--orb-trail-${index + 1}-y`, unitY * distance)
+          const speedDistance = distance * (0.72 + normalizedSpeed * 0.52)
+          setLength(`--orb-trail-${index + 1}-x`, unitX * speedDistance)
+          setLength(`--orb-trail-${index + 1}-y`, unitY * speedDistance)
         })
         orb.style.setProperty(
           "--orb-fragment-opacity",
-          String(0.12 + normalizedSpeed * 0.6)
+          String(0.3 + normalizedSpeed * 0.5)
         )
-        const trailOpacity = normalizedSpeed * 0.4
+        orb.style.setProperty(
+          "--orb-halo-opacity",
+          String(0.28 + normalizedSpeed * 0.32)
+        )
+        const trailOpacity = 0.22 + normalizedSpeed * 0.55
         orbTrailOpacityFactors.forEach((factor, index) => {
           orb.style.setProperty(
             `--orb-trail-opacity-${index + 1}`,
