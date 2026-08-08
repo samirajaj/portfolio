@@ -500,6 +500,25 @@
     width: 76%;
     border-radius: 50%;
   }
+  .avatar-fluid-ripples,
+  .avatar-fluid-ripples > span {
+    position: absolute;
+    z-index: -1;
+    inset: -4%;
+    display: block;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .avatar-fluid-ripples > span {
+    inset: 0;
+    visibility: hidden;
+    border: 1px solid color-mix(in oklch, var(--primary), transparent 44%);
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .avatar-fluid-ripples > span:nth-child(2) {
+    border-color: color-mix(in oklch, var(--response), transparent 56%);
+  }
   .avatar-float {
     position: relative;
     width: 100%;

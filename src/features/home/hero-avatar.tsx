@@ -47,6 +47,10 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
         "[data-avatar-node]",
         stageElement
       )
+      const ripples = gsap.utils.toArray<HTMLElement>(
+        "[data-avatar-ripple]",
+        stageElement
+      )
       const media = gsap.matchMedia()
 
       media.add(
@@ -63,22 +67,59 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
           gsap.set(stageElement, { autoAlpha: 1 })
           if (!motionAllowed) return
 
-          const floatTween = gsap.to(floatElement, {
-            y: -motionTokens.avatar.floatDistance,
-            duration: motionTokens.avatar.floatDuration,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          })
-          const shadowTween = gsap.to(shadowElement, {
-            scaleX: 1.12,
-            scaleY: 0.9,
-            autoAlpha: 0.46,
-            duration: motionTokens.avatar.floatDuration,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          })
+          const floatTimeline = gsap
+            .timeline({
+              repeat: -1,
+              defaults: {
+                duration: motionTokens.avatar.floatSegmentDuration,
+                ease: "sine.inOut",
+              },
+            })
+            .to(floatElement, {
+              x: motionTokens.avatar.driftDistance,
+              y: -motionTokens.avatar.floatDistance,
+              rotation: 0.45,
+            })
+            .to(floatElement, {
+              x: -motionTokens.avatar.driftDistance * 0.65,
+              y: -motionTokens.avatar.floatDistance * 0.35,
+              rotation: -0.32,
+              duration: motionTokens.avatar.floatSegmentDuration * 0.88,
+            })
+            .to(floatElement, {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              duration: motionTokens.avatar.floatSegmentDuration * 1.08,
+            })
+          const shadowTimeline = gsap
+            .timeline({
+              repeat: -1,
+              defaults: {
+                duration: motionTokens.avatar.floatSegmentDuration,
+                ease: "sine.inOut",
+              },
+            })
+            .to(shadowElement, {
+              x: motionTokens.avatar.driftDistance * 0.45,
+              scaleX: 1.16,
+              scaleY: 0.86,
+              autoAlpha: 0.42,
+            })
+            .to(shadowElement, {
+              x: -motionTokens.avatar.driftDistance * 0.25,
+              scaleX: 1.06,
+              scaleY: 0.94,
+              autoAlpha: 0.52,
+              duration: motionTokens.avatar.floatSegmentDuration * 0.88,
+            })
+            .to(shadowElement, {
+              x: 0,
+              scaleX: 1,
+              scaleY: 1,
+              autoAlpha: 0.64,
+              duration: motionTokens.avatar.floatSegmentDuration * 1.08,
+            })
           const nodeTweens = nodes.map((node, index) =>
             gsap.to(node, {
               x: index % 2 === 0 ? 4 + index : -3 - index * 0.5,
@@ -94,8 +135,8 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
 
           if (!finePointer) {
             return () => {
-              floatTween.kill()
-              shadowTween.kill()
+              floatTimeline.kill()
+              shadowTimeline.kill()
               nodeTweens.forEach((tween) => tween.kill())
             }
           }
@@ -140,6 +181,7 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
             const directionY = deltaY / magnitude
             isImpulsing = true
             impulseTimeline?.kill()
+            gsap.set(ripples, { autoAlpha: 0, scale: 0.94 })
             impulseTimeline = gsap
               .timeline({ onComplete: () => (isImpulsing = false) })
               .to(
@@ -148,10 +190,10 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
                   x: directionX * motionTokens.avatar.impulseDistance,
                   y: directionY * motionTokens.avatar.impulseDistance * 0.72,
                   rotation: directionX * motionTokens.avatar.impulseRotation,
-                  scaleX: 0.99,
-                  scaleY: 1.01,
-                  duration: 0.16,
-                  ease: "power2.out",
+                  scaleX: 0.995,
+                  scaleY: 1.005,
+                  duration: motionTokens.avatar.fluidPushDuration,
+                  ease: "sine.out",
                   overwrite: "auto",
                 },
                 0
@@ -161,33 +203,108 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
                 {
                   x: directionX * 3,
                   scaleX: 0.94,
-                  duration: 0.16,
-                  ease: "power2.out",
+                  duration: motionTokens.avatar.fluidPushDuration,
+                  ease: "sine.out",
                   overwrite: "auto",
                 },
                 0
               )
+              .to(
+                ripples,
+                {
+                  autoAlpha: 0.34,
+                  scale: 1.02,
+                  duration: motionTokens.avatar.fluidPushDuration,
+                  stagger: 0.1,
+                  ease: "sine.out",
+                },
+                0
+              )
+              .to(
+                ripples,
+                {
+                  autoAlpha: 0,
+                  scale: 1.18,
+                  duration: motionTokens.avatar.fluidWaveDuration * 1.8,
+                  stagger: 0.1,
+                  ease: "sine.out",
+                },
+                ">-0.12"
+              )
+              .to(
+                depthElement,
+                {
+                  x: directionX * -6,
+                  y: directionY * -4,
+                  rotation: directionX * -0.7,
+                  scaleX: 1,
+                  scaleY: 1,
+                  duration: motionTokens.avatar.fluidWaveDuration,
+                  ease: "sine.inOut",
+                },
+                "<0.08"
+              )
+              .to(
+                shadowResponseElement,
+                {
+                  x: directionX * -2,
+                  scaleX: 1.07,
+                  duration: motionTokens.avatar.fluidWaveDuration,
+                  ease: "sine.inOut",
+                },
+                "<"
+              )
               .to(depthElement, {
-                x: directionX * -2,
-                y: directionY * -1.4,
-                rotation: directionX * -0.22,
-                scaleX: 1,
-                scaleY: 1,
-                duration: 0.34,
-                ease: "power2.out",
+                x: directionX * 3.2,
+                y: directionY * 2.1,
+                rotation: directionX * 0.34,
+                duration: motionTokens.avatar.fluidWaveDuration * 0.88,
+                ease: "sine.inOut",
               })
               .to(
                 shadowResponseElement,
-                { x: 0, scaleX: 1, duration: 0.42, ease: "power2.out" },
+                {
+                  x: directionX,
+                  scaleX: 0.98,
+                  duration: motionTokens.avatar.fluidWaveDuration * 0.88,
+                  ease: "sine.inOut",
+                },
+                "<"
+              )
+              .to(depthElement, {
+                x: directionX * -1.35,
+                y: directionY * -0.9,
+                rotation: directionX * -0.14,
+                duration: motionTokens.avatar.fluidWaveDuration * 0.76,
+                ease: "sine.inOut",
+              })
+              .to(
+                shadowResponseElement,
+                {
+                  x: 0,
+                  scaleX: 1.02,
+                  duration: motionTokens.avatar.fluidWaveDuration * 0.76,
+                  ease: "sine.inOut",
+                },
                 "<"
               )
               .to(depthElement, {
                 x: 0,
                 y: 0,
                 rotation: 0,
-                duration: 0.42,
+                duration: motionTokens.avatar.fluidSettleDuration,
                 ease: "sine.out",
               })
+              .to(
+                shadowResponseElement,
+                {
+                  x: 0,
+                  scaleX: 1,
+                  duration: motionTokens.avatar.fluidSettleDuration,
+                  ease: "sine.out",
+                },
+                "<"
+              )
           })
 
           const onPointerMove = (event: PointerEvent) => {
@@ -218,6 +335,11 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
           const onPointerLeave = () => {
             impulseTimeline?.kill()
             isImpulsing = false
+            gsap.to(ripples, {
+              autoAlpha: 0,
+              duration: motionTokens.duration.fast,
+              overwrite: true,
+            })
             depthXTo(0)
             depthYTo(0)
             rotationTo(0)
@@ -245,8 +367,8 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
             hitAreaElement.removeEventListener("pointermove", onPointerMove)
             hitAreaElement.removeEventListener("pointerleave", onPointerLeave)
             impulseTimeline?.kill()
-            floatTween.kill()
-            shadowTween.kill()
+            floatTimeline.kill()
+            shadowTimeline.kill()
             nodeTweens.forEach((tween) => tween.kill())
           }
         }
@@ -277,6 +399,10 @@ export function HeroAvatar({ avatar }: HeroAvatarProps) {
         <span ref={shadow} className="avatar-shadow" />
       </span>
       <div ref={hitArea} className="avatar-hit-area">
+        <span className="avatar-fluid-ripples" aria-hidden="true">
+          <span data-avatar-ripple />
+          <span data-avatar-ripple />
+        </span>
         <div ref={floatingPortrait} className="avatar-float">
           <div ref={portraitDepth} className="avatar-depth">
             <span className="avatar-orbit-guide" aria-hidden="true" />
