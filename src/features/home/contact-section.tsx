@@ -7,7 +7,6 @@ import {
 } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
-import { CursorAurora } from "@/components/motion/cursor-aurora"
 import { Button } from "@/components/ui/button"
 import type { LocalizedPortfolioData } from "@/content/portfolio.types"
 
@@ -24,9 +23,8 @@ export function ContactSection({
   const { t } = useTranslation(["site", "common"])
   return (
     <section id="contact" className="contact-panel section-shell">
-      <CursorAurora />
       <div className="page-container relative z-10 grid gap-12 lg:grid-cols-12">
-        <div data-aurora-protect className="lg:col-span-8">
+        <div className="lg:col-span-8">
           <p className="eyebrow text-response">
             {t("site:sections.contact.eyebrow")}
           </p>
@@ -39,7 +37,6 @@ export function ContactSection({
           <a
             href={socialLinks.email.href}
             className="mt-10 block w-fit max-w-full border-b border-current pb-2 text-xl font-medium sm:text-3xl"
-            data-aurora-attract
           >
             <bdi dir="ltr" className="break-all">
               {personal.email}
@@ -48,25 +45,21 @@ export function ContactSection({
         </div>
         <div className="flex flex-col justify-end gap-3 lg:col-span-4">
           <Button asChild variant="secondary" size="lg">
-            <a href={socialLinks.email.href} data-aurora-attract>
+            <a href={socialLinks.email.href}>
               <MailIcon data-icon="inline-start" aria-hidden="true" />
               {t("common:actions.sendEmail")}
             </a>
           </Button>
           {socialLinks.phone ? (
             <Button asChild variant="outline" size="lg">
-              <a href={socialLinks.phone.href} data-aurora-attract>
+              <a href={socialLinks.phone.href}>
                 <PhoneIcon data-icon="inline-start" aria-hidden="true" />
                 <bdi dir="ltr">{personal.phone}</bdi>
               </a>
             </Button>
           ) : null}
           <Button asChild variant="outline" size="lg">
-            <a
-              href={resume.file}
-              download={resume.downloadName}
-              data-aurora-attract
-            >
+            <a href={resume.file} download={resume.downloadName}>
               <DownloadIcon data-icon="inline-start" aria-hidden="true" />
               {t("common:actions.downloadCv")}
             </a>
@@ -78,7 +71,6 @@ export function ContactSection({
                 target="_blank"
                 rel="noreferrer"
                 aria-label={socialLinks.github.ariaLabel}
-                data-aurora-attract
               >
                 <GitForkIcon aria-hidden="true" />
               </a>
@@ -89,7 +81,6 @@ export function ContactSection({
                 target="_blank"
                 rel="noreferrer"
                 aria-label={socialLinks.linkedin.ariaLabel}
-                data-aurora-attract
               >
                 <BriefcaseBusinessIcon aria-hidden="true" />
               </a>

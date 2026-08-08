@@ -21,4 +21,11 @@ export const motionTokens = {
     system: "power1.inOut",
   },
   pointerRotation: 2.5,
+  orb: {
+    followDuration: 0.2,
+    captureDuration: 0.42,
+    releaseDuration: 0.36,
+    idleDelayMs: 170,
+    respawnDistance: 18,
+  },
 } as const

@@ -9,7 +9,6 @@ import {
 import { useRef } from "react"
 import { useTranslation } from "react-i18next"
 
-import { CursorAurora } from "@/components/motion/cursor-aurora"
 import { Button } from "@/components/ui/button"
 import type { LocalizedPortfolioData } from "@/content/portfolio.types"
 import { gsap, useGSAP } from "@/lib/gsap/gsap"
@@ -75,12 +74,8 @@ export function HeroSection({
       id="hero"
       className="hero-section section-shell min-h-[calc(100svh-3.5rem)]"
     >
-      <CursorAurora />
       <div className="page-container relative z-10 grid items-center gap-12 lg:grid-cols-12">
-        <div
-          data-aurora-protect
-          className="flex flex-col items-start gap-7 lg:col-span-7"
-        >
+        <div className="flex flex-col items-start gap-7 lg:col-span-7">
           {availability ? (
             <div
               data-hero-detail
@@ -120,17 +115,13 @@ export function HeroSection({
           </div>
           <div data-hero-detail className="flex flex-wrap gap-2">
             <Button asChild size="lg">
-              <a
-                href={resume.file}
-                download={resume.downloadName}
-                data-aurora-attract
-              >
+              <a href={resume.file} download={resume.downloadName}>
                 <DownloadIcon data-icon="inline-start" aria-hidden="true" />
                 {t("common:actions.downloadCv")}
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
-              <a href={socialLinks.email.href} data-aurora-attract>
+              <a href={socialLinks.email.href}>
                 <MailIcon data-icon="inline-start" aria-hidden="true" />
                 {t("common:actions.contactMe")}
               </a>
@@ -141,7 +132,6 @@ export function HeroSection({
                 target="_blank"
                 rel="noreferrer"
                 aria-label={socialLinks.github.ariaLabel}
-                data-aurora-attract
               >
                 <GitForkIcon aria-hidden="true" />
               </a>
@@ -152,7 +142,6 @@ export function HeroSection({
                 target="_blank"
                 rel="noreferrer"
                 aria-label={socialLinks.linkedin.ariaLabel}
-                data-aurora-attract
               >
                 <BriefcaseBusinessIcon aria-hidden="true" />
               </a>
@@ -163,7 +152,6 @@ export function HeroSection({
         <div className="lg:col-span-5">
           <div
             ref={portrait}
-            data-aurora-attract
             className="portrait-frame relative mx-auto max-w-md"
           >
             <div className="absolute -inset-3 -z-10 rounded-[2rem] border border-primary/30" />
