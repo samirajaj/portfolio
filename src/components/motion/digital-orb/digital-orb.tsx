@@ -5,8 +5,8 @@ export type DigitalOrbRefs = {
   root: RefObject<HTMLDivElement | null>
   core: RefObject<HTMLSpanElement | null>
   captureLine: RefObject<HTMLSpanElement | null>
+  trailCanvas: RefObject<HTMLCanvasElement | null>
   fragments: MutableRefObject<(HTMLSpanElement | null)[]>
-  trail: MutableRefObject<(HTMLSpanElement | null)[]>
 }
 
 type DigitalOrbProps = {
@@ -16,13 +16,18 @@ type DigitalOrbProps = {
 export function DigitalOrb({ elements }: DigitalOrbProps) {
   if (typeof document === "undefined") return null
 
-  const { root, core, captureLine, fragments, trail } = elements
+  const { root, core, captureLine, trailCanvas, fragments } = elements
 
   return createPortal(
     <>
       <span
         ref={captureLine}
         className="digital-orb-capture-line"
+        aria-hidden="true"
+      />
+      <canvas
+        ref={trailCanvas}
+        className="digital-orb-pixel-trail"
         aria-hidden="true"
       />
       <div
@@ -33,16 +38,6 @@ export function DigitalOrb({ elements }: DigitalOrbProps) {
         data-interactive="false"
         aria-hidden="true"
       >
-        <span className="digital-orb-trail">
-          {Array.from({ length: 6 }, (_, index) => (
-            <span
-              key={index}
-              ref={(element) => {
-                trail.current[index] = element
-              }}
-            />
-          ))}
-        </span>
         <span ref={core} className="digital-orb-core" />
         <span className="digital-orb-fragments">
           {Array.from({ length: 7 }, (_, index) => (

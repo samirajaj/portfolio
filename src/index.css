@@ -465,59 +465,48 @@
   .avatar-technical-field {
     position: absolute;
     z-index: 0;
-    inset: 7%;
+    inset: 4%;
+    overflow: hidden;
     border-radius: 50%;
-    opacity: 0.72;
-    background-image: radial-gradient(
-      circle,
-      color-mix(in oklch, var(--primary), transparent 55%) 1px,
-      transparent 1px
-    );
-    background-size: clamp(0.8rem, 2.2vw, 1.4rem) clamp(0.8rem, 2.2vw, 1.4rem);
-    mask-image: radial-gradient(circle, #000 20%, transparent 71%);
+    opacity: 0.62;
+    background-image:
+      linear-gradient(
+        color-mix(in oklch, var(--primary), transparent 79%) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklch, var(--primary), transparent 79%) 1px,
+        transparent 1px
+      ),
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 0.72rem,
+        color-mix(in oklch, var(--response), transparent 91%) 0.72rem 0.78rem
+      );
+    background-size:
+      clamp(1rem, 2.6vw, 1.55rem) clamp(1rem, 2.6vw, 1.55rem),
+      clamp(1rem, 2.6vw, 1.55rem) clamp(1rem, 2.6vw, 1.55rem),
+      auto;
+    mask-image: radial-gradient(circle, #000 22%, transparent 73%);
     will-change: transform;
   }
-  .avatar-technical-field span {
+  .avatar-technical-field::before {
     position: absolute;
-    display: block;
-    border: 1px solid color-mix(in oklch, var(--primary), transparent 74%);
-    border-radius: 50%;
-  }
-  .avatar-technical-field span:nth-child(1) {
-    inset: 9%;
-    border-style: dashed;
-  }
-  .avatar-technical-field span:nth-child(2) {
-    inset: 19%;
-  }
-  .avatar-technical-field span:nth-child(3) {
-    inset: 2% 42%;
-    border-radius: 1px;
+    inset: 18% 8%;
+    content: "";
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0 0.65rem,
+      color-mix(in oklch, var(--primary), transparent 80%) 0.65rem 0.7rem
+    );
+    mask-image: linear-gradient(90deg, transparent, #000 24% 76%, transparent);
   }
   .avatar-hit-area {
     position: relative;
     z-index: 2;
     width: 76%;
     border-radius: 50%;
-  }
-  .avatar-fluid-ripples,
-  .avatar-fluid-ripples > span {
-    position: absolute;
-    z-index: -1;
-    inset: -4%;
-    display: block;
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  .avatar-fluid-ripples > span {
-    inset: 0;
-    visibility: hidden;
-    border: 1px solid color-mix(in oklch, var(--primary), transparent 44%);
-    opacity: 0;
-    will-change: transform, opacity;
-  }
-  .avatar-fluid-ripples > span:nth-child(2) {
-    border-color: color-mix(in oklch, var(--response), transparent 56%);
   }
   .avatar-float {
     position: relative;
@@ -545,13 +534,6 @@
     object-fit: cover;
     object-position: center;
   }
-  .avatar-orbit-guide {
-    position: absolute;
-    z-index: -1;
-    inset: -5%;
-    border: 1px dashed color-mix(in oklch, var(--primary), transparent 70%);
-    border-radius: 50%;
-  }
   .avatar-shadow-response {
     position: absolute;
     z-index: 1;
@@ -572,74 +554,6 @@
     filter: blur(clamp(0.28rem, 0.8vw, 0.65rem));
     transform-origin: center;
     will-change: transform, opacity;
-  }
-  .avatar-nodes {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    will-change: transform;
-  }
-  .avatar-nodes-back {
-    z-index: 1;
-  }
-  .avatar-nodes-front {
-    z-index: 3;
-  }
-  .avatar-nodes span {
-    position: absolute;
-    display: block;
-    size: clamp(0.22rem, 0.75vw, 0.42rem);
-    border-radius: 1px;
-    background: var(--primary);
-    box-shadow: 0 0 0.45rem color-mix(in oklch, var(--primary), transparent 42%);
-    will-change: transform, opacity;
-  }
-  .avatar-nodes span[data-node="1"] {
-    inset-block-start: 18%;
-    inset-inline-start: 11%;
-  }
-  .avatar-nodes span[data-node="2"] {
-    inset-block-start: 14%;
-    inset-inline-end: 17%;
-    size: clamp(0.5rem, 1.4vw, 0.85rem);
-    border: 1px solid var(--response);
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: none;
-  }
-  .avatar-nodes span[data-node="3"] {
-    inset-block-start: 46%;
-    inset-inline-end: 5%;
-    background: var(--response);
-  }
-  .avatar-nodes span[data-node="4"] {
-    inset-block-end: 18%;
-    inset-inline-start: 8%;
-    width: clamp(0.7rem, 2vw, 1.1rem);
-    height: 1px;
-    background: var(--primary);
-    box-shadow: none;
-  }
-  .avatar-nodes span[data-node="5"] {
-    inset-block-end: 9%;
-    inset-inline-end: 24%;
-    opacity: 0.48;
-  }
-  .avatar-nodes span[data-node="6"] {
-    inset-block-start: 34%;
-    inset-inline-start: 17%;
-    z-index: 4;
-    size: clamp(0.18rem, 0.55vw, 0.32rem);
-    background: var(--primary-foreground);
-  }
-  .avatar-foreground-pixel {
-    position: absolute;
-    z-index: 4;
-    inset-block-end: 18%;
-    inset-inline-end: -2%;
-    size: clamp(0.22rem, 0.7vw, 0.4rem);
-    border: 1px solid var(--primary);
-    background: var(--background);
   }
   .hero-supporting-grid {
     display: grid;
@@ -879,26 +793,8 @@
     --orb-forward-y: 0px;
     --orb-side-x: 0px;
     --orb-side-y: 6px;
-    --orb-trail-1-x: 12px;
-    --orb-trail-1-y: 0px;
-    --orb-trail-2-x: 18px;
-    --orb-trail-2-y: 0px;
-    --orb-trail-3-x: 24px;
-    --orb-trail-3-y: 0px;
-    --orb-trail-4-x: 30px;
-    --orb-trail-4-y: 0px;
-    --orb-trail-5-x: 42px;
-    --orb-trail-5-y: 0px;
-    --orb-trail-6-x: 54px;
-    --orb-trail-6-y: 0px;
     --orb-fragment-opacity: 0.3;
     --orb-halo-opacity: 0.28;
-    --orb-trail-opacity-1: 0;
-    --orb-trail-opacity-2: 0;
-    --orb-trail-opacity-3: 0;
-    --orb-trail-opacity-4: 0;
-    --orb-trail-opacity-5: 0;
-    --orb-trail-opacity-6: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -908,6 +804,15 @@
     opacity: 0;
     pointer-events: none;
     will-change: transform, opacity;
+  }
+  .digital-orb-pixel-trail {
+    position: fixed;
+    inset: 0;
+    z-index: 39;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
   }
   .digital-orb-core {
     position: absolute;
@@ -969,8 +874,7 @@
       0 0 0 0.2rem color-mix(in oklch, var(--primary), transparent 75%),
       0 0 0.85rem color-mix(in oklch, var(--primary), transparent 24%);
   }
-  .digital-orb-fragments span,
-  .digital-orb-trail span {
+  .digital-orb-fragments span {
     position: absolute;
     inset: 50% auto auto 50%;
     display: block;
@@ -1011,8 +915,8 @@
   }
   .digital-orb-fragments span:nth-child(4) {
     transform: translate(
-      calc(-50% - var(--orb-trail-1-x)),
-      calc(-50% - var(--orb-trail-1-y))
+      calc(-50% - var(--orb-forward-x)),
+      calc(-50% - var(--orb-forward-y))
     );
   }
   .digital-orb-fragments span:nth-child(5) {
@@ -1032,54 +936,6 @@
       calc(-50% - var(--orb-side-x)),
       calc(-50% - var(--orb-side-y))
     );
-  }
-  .digital-orb-trail span {
-    opacity: var(--orb-trail-opacity-1);
-  }
-  .digital-orb-trail span:nth-child(odd) {
-    width: 0.36rem;
-    height: 0.16rem;
-  }
-  .digital-orb-trail span:nth-child(1) {
-    transform: translate(
-      calc(-50% - var(--orb-trail-1-x)),
-      calc(-50% - var(--orb-trail-1-y))
-    );
-  }
-  .digital-orb-trail span:nth-child(2) {
-    transform: translate(
-      calc(-50% - var(--orb-trail-2-x)),
-      calc(-50% - var(--orb-trail-2-y))
-    );
-    opacity: var(--orb-trail-opacity-2);
-  }
-  .digital-orb-trail span:nth-child(3) {
-    transform: translate(
-      calc(-50% - var(--orb-trail-3-x)),
-      calc(-50% - var(--orb-trail-3-y))
-    );
-    opacity: var(--orb-trail-opacity-3);
-  }
-  .digital-orb-trail span:nth-child(4) {
-    transform: translate(
-      calc(-50% - var(--orb-trail-4-x)),
-      calc(-50% - var(--orb-trail-4-y))
-    );
-    opacity: var(--orb-trail-opacity-4);
-  }
-  .digital-orb-trail span:nth-child(5) {
-    transform: translate(
-      calc(-50% - var(--orb-trail-5-x)),
-      calc(-50% - var(--orb-trail-5-y))
-    );
-    opacity: var(--orb-trail-opacity-5);
-  }
-  .digital-orb-trail span:nth-child(6) {
-    transform: translate(
-      calc(-50% - var(--orb-trail-6-x)),
-      calc(-50% - var(--orb-trail-6-y))
-    );
-    opacity: var(--orb-trail-opacity-6);
   }
   .digital-orb-capture-line {
     position: fixed;
@@ -1246,6 +1102,7 @@
 
 @media (hover: none), (pointer: coarse) {
   .digital-orb,
+  .digital-orb-pixel-trail,
   .digital-orb-capture-line {
     display: none !important;
   }
@@ -1295,6 +1152,7 @@
     display: none;
   }
   .digital-orb,
+  .digital-orb-pixel-trail,
   .digital-orb-capture-line {
     display: none !important;
   }

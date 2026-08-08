@@ -28,7 +28,6 @@ export const motionTokens = {
     impulseDistance: 15,
     impulseRotation: 1.35,
     fluidPushDuration: 0.24,
-    fluidWaveDuration: 0.44,
     fluidSettleDuration: 0.52,
     depthDistance: 9,
     depthRotation: 1,

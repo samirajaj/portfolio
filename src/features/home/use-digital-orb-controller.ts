@@ -31,8 +31,24 @@ type UseDigitalOrbControllerOptions = {
 }
 
 type MotionPoint = { x: number; y: number; angle?: number }
-const orbTrailDistances = [15, 24, 34, 45, 57, 70] as const
-const orbTrailOpacityFactors = [1, 0.82, 0.64, 0.46, 0.3, 0.17] as const
+type PixelTrailCell = {
+  x: number
+  y: number
+  bornAt: number
+  lifetime: number
+  size: number
+  breakupAt: number
+  driftX: number
+  driftY: number
+  flickerPhase: number
+}
+
+const maxTrailPixels = 1200
+
+function seededUnit(index: number, salt: number) {
+  const value = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453
+  return value - Math.floor(value)
+}
 
 function setCardPhase(
   card: HTMLElement,
@@ -84,14 +100,15 @@ export function useDigitalOrbController({
   const root = useRef<HTMLDivElement>(null)
   const core = useRef<HTMLSpanElement>(null)
   const captureLine = useRef<HTMLSpanElement>(null)
+  const trailCanvas = useRef<HTMLCanvasElement>(null)
   const fragments = useRef<(HTMLSpanElement | null)[]>([])
-  const trail = useRef<(HTMLSpanElement | null)[]>([])
 
   useGSAP(
     (_, contextSafe) => {
       const orb = root.current
       const orbCore = core.current
       const line = captureLine.current
+      const canvas = trailCanvas.current
       const journeyElement = journey.current
       const route = path.current
       const travelledRoute = progressPath.current
@@ -103,6 +120,7 @@ export function useDigitalOrbController({
         !orb ||
         !orbCore ||
         !line ||
+        !canvas ||
         !journeyElement ||
         !route ||
         !travelledRoute ||
@@ -111,6 +129,9 @@ export function useDigitalOrbController({
       ) {
         return
       }
+
+      const trailContext = canvas.getContext("2d")
+      if (!trailContext) return
 
       const pointerCapable = window.matchMedia(
         "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
@@ -145,11 +166,185 @@ export function useDigitalOrbController({
         time: performance.now(),
       }
       const burstPointer = { x: pointer.x, y: pointer.y }
+      const trailPixels: PixelTrailCell[] = []
+      let trailPixelSequence = 0
+      let trailTickerActive = false
+      let trailGenerating = false
+      let hasTrailSample = false
+      let hasPointerInput = false
+      let trailSampleX = pointer.x
+      let trailSampleY = pointer.y
+      let latestTrailSpeed = 0
+      let lastTrailInputAt = 0
+      let trailColor = ""
+
+      const resizeTrailCanvas = () => {
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2)
+        canvas.width = Math.round(window.innerWidth * pixelRatio)
+        canvas.height = Math.round(window.innerHeight * pixelRatio)
+        canvas.style.width = `${window.innerWidth}px`
+        canvas.style.height = `${window.innerHeight}px`
+        trailContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+        trailPixels.length = 0
+        hasTrailSample = false
+      }
+
+      const refreshTrailColor = () => {
+        trailColor = getComputedStyle(orb).getPropertyValue("--primary").trim()
+      }
+
+      const emitPixelRibbon = (
+        fromX: number,
+        fromY: number,
+        toX: number,
+        toY: number,
+        speed: number,
+        now: number
+      ) => {
+        const deltaX = toX - fromX
+        const deltaY = toY - fromY
+        const distance = Math.hypot(deltaX, deltaY)
+        if (distance < 0.75 || distance > 180) return
+
+        const unitX = deltaX / distance
+        const unitY = deltaY / distance
+        const normalX = -unitY
+        const normalY = unitX
+        const normalizedSpeed = gsap.utils.clamp(0, 1, speed)
+        const spacing = 1.9 - normalizedSpeed * 0.4
+        const stepCount = Math.min(96, Math.ceil(distance / spacing))
+        const rowCount = normalizedSpeed > 0.5 ? 5 : 3
+        const ribbonWidth = 3.4 + normalizedSpeed * 1.4
+        const baseSize = 1.55 + normalizedSpeed * 0.25
+
+        for (let step = 1; step <= stepCount; step += 1) {
+          const progress = step / stepCount
+          const pathX = fromX + deltaX * progress
+          const pathY = fromY + deltaY * progress
+
+          for (let row = 0; row < rowCount; row += 1) {
+            const rowProgress = row / (rowCount - 1)
+            const crossOffset = (rowProgress - 0.5) * ribbonWidth
+            const sequence = trailPixelSequence
+            trailPixelSequence += 1
+            const lifetimeSeed = seededUnit(sequence, 1)
+            const breakupSeed = seededUnit(sequence, 2)
+            const driftSeed = seededUnit(sequence, 3)
+            const driftDirection = driftSeed > 0.5 ? 1 : -1
+            const driftDistance = 0.45 + seededUnit(sequence, 4) * 1.55
+
+            trailPixels.push({
+              x: pathX + normalX * crossOffset,
+              y: pathY + normalY * crossOffset,
+              bornAt: now,
+              lifetime: 180 + normalizedSpeed * 110 + lifetimeSeed * 100,
+              size: baseSize * (0.88 + seededUnit(sequence, 5) * 0.24),
+              breakupAt: 0.3 + breakupSeed * 0.2,
+              driftX: normalX * driftDirection * driftDistance,
+              driftY: normalY * driftDirection * driftDistance,
+              flickerPhase: seededUnit(sequence, 6) * Math.PI * 2,
+            })
+          }
+        }
+
+        if (trailPixels.length > maxTrailPixels) {
+          trailPixels.splice(0, trailPixels.length - maxTrailPixels)
+        }
+      }
+
+      const renderPixelTrail = () => {
+        const now = performance.now()
+
+        if (trailGenerating && mode === "pointer" && hasTrailSample) {
+          const orbX = Number(gsap.getProperty(orb, "x"))
+          const orbY = Number(gsap.getProperty(orb, "y"))
+          emitPixelRibbon(
+            trailSampleX,
+            trailSampleY,
+            orbX,
+            orbY,
+            latestTrailSpeed,
+            now
+          )
+          trailSampleX = orbX
+          trailSampleY = orbY
+
+          if (
+            now - lastTrailInputAt > motionTokens.orb.idleDelayMs &&
+            Math.hypot(pointer.x - orbX, pointer.y - orbY) < 0.75
+          ) {
+            trailGenerating = false
+          }
+        }
+
+        trailContext.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        trailContext.fillStyle = trailColor
+
+        let livePixelCount = 0
+        for (const pixel of trailPixels) {
+          const age = (now - pixel.bornAt) / pixel.lifetime
+          if (age >= 1) continue
+
+          const breakupProgress = gsap.utils.clamp(
+            0,
+            1,
+            (age - pixel.breakupAt) / (1 - pixel.breakupAt)
+          )
+          const fade = Math.pow(1 - breakupProgress, 1.35)
+          const flicker =
+            breakupProgress > 0
+              ? 0.82 +
+                Math.sin(now * 0.045 + pixel.flickerPhase) *
+                  0.18 *
+                  breakupProgress
+              : 1
+          const alpha = 0.76 * fade * flicker
+          const size = pixel.size * (1 - breakupProgress * 0.48)
+          const drawX = pixel.x + pixel.driftX * breakupProgress
+          const drawY = pixel.y + pixel.driftY * breakupProgress
+
+          trailContext.globalAlpha = alpha
+          trailContext.fillRect(
+            Math.round(drawX * 2) / 2,
+            Math.round(drawY * 2) / 2,
+            Math.max(0.75, size),
+            Math.max(0.75, size)
+          )
+          trailPixels[livePixelCount] = pixel
+          livePixelCount += 1
+        }
+
+        trailPixels.length = livePixelCount
+        trailContext.globalAlpha = 1
+
+        if (!trailGenerating && trailPixels.length === 0) {
+          gsap.ticker.remove(renderPixelTrail)
+          trailTickerActive = false
+        }
+      }
+
+      const startTrailTicker = () => {
+        if (trailTickerActive) return
+        trailTickerActive = true
+        gsap.ticker.add(renderPixelTrail)
+      }
+
+      resizeTrailCanvas()
+      refreshTrailColor()
+      const themeObserver = new MutationObserver(refreshTrailColor)
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class", "data-theme", "style"],
+      })
 
       const setMode = (nextMode: OrbMode) => {
         if (mode === nextMode) return
         mode = nextMode
         orb.dataset.mode = nextMode
+        if (nextMode !== "pointer") {
+          trailGenerating = false
+          hasTrailSample = false
+        }
       }
 
       const setDirection = (x: number, y: number, speed: number) => {
@@ -167,26 +362,14 @@ export function useDigitalOrbController({
         setLength("--orb-forward-y", unitY * forwardDistance)
         setLength("--orb-side-x", -unitY * sideDistance)
         setLength("--orb-side-y", unitX * sideDistance)
-        orbTrailDistances.forEach((distance, index) => {
-          const speedDistance = distance * (0.72 + normalizedSpeed * 0.52)
-          setLength(`--orb-trail-${index + 1}-x`, unitX * speedDistance)
-          setLength(`--orb-trail-${index + 1}-y`, unitY * speedDistance)
-        })
         orb.style.setProperty(
           "--orb-fragment-opacity",
-          String(0.3 + normalizedSpeed * 0.5)
+          String(0.18 + normalizedSpeed * 0.32)
         )
         orb.style.setProperty(
           "--orb-halo-opacity",
           String(0.28 + normalizedSpeed * 0.32)
         )
-        const trailOpacity = 0.22 + normalizedSpeed * 0.55
-        orbTrailOpacityFactors.forEach((factor, index) => {
-          orb.style.setProperty(
-            `--orb-trail-opacity-${index + 1}`,
-            String(trailOpacity * factor)
-          )
-        })
       }
 
       const refreshPathMatrix = () => {
@@ -493,14 +676,24 @@ export function useDigitalOrbController({
         xTo(pointer.x)
         yTo(pointer.y)
         setDirection(deltaX, deltaY, speed)
+        if (hasPointerInput) {
+          latestTrailSpeed = Math.min(1, speed)
+          lastTrailInputAt = now
+          if (!hasTrailSample) {
+            trailSampleX = Number(gsap.getProperty(orb, "x"))
+            trailSampleY = Number(gsap.getProperty(orb, "y"))
+            hasTrailSample = true
+          }
+          trailGenerating = true
+          startTrailTicker()
+        } else {
+          hasPointerInput = true
+        }
         orb.dataset.moving = "true"
         window.clearTimeout(idleTimer)
         idleTimer = window.setTimeout(() => {
           orb.dataset.moving = "false"
           orb.style.setProperty("--orb-fragment-opacity", "0")
-          orbTrailDistances.forEach((_, index) => {
-            orb.style.setProperty(`--orb-trail-opacity-${index + 1}`, "0")
-          })
         }, motionTokens.orb.idleDelayMs)
       }
 
@@ -548,10 +741,15 @@ export function useDigitalOrbController({
         : null
 
       window.addEventListener("pointermove", onPointerMove, { passive: true })
+      window.addEventListener("resize", resizeTrailCanvas, { passive: true })
 
       return () => {
         window.clearTimeout(idleTimer)
         window.removeEventListener("pointermove", onPointerMove)
+        window.removeEventListener("resize", resizeTrailCanvas)
+        themeObserver.disconnect()
+        gsap.ticker.remove(renderPixelTrail)
+        trailContext.clearRect(0, 0, window.innerWidth, window.innerHeight)
         captureTimeline?.kill()
         stateTimeline?.kill()
         projectTrigger?.kill()
@@ -565,5 +763,5 @@ export function useDigitalOrbController({
     }
   )
 
-  return { root, core, captureLine, fragments, trail }
+  return { root, core, captureLine, trailCanvas, fragments }
 }
